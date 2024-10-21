@@ -1,15 +1,15 @@
 import random
-
+# initialize variables
 wins = 0
 total_games = 0
 playing = True
-
+# Playing loop
 while playing:
     print(f"You won {wins} out of {total_games} games!")
     print("Choose Rock, Paper, or Scissors:")
     player1_input = input()
 
-    # Input validation
+    # Makes sure your input had correct capitalization
     while player1_input not in ["Rock", "Paper", "Scissors"]:
         print("Please try again, input is case sensitive (Rock, Paper, or Scissors):")
         player1_input = input()
@@ -36,6 +36,6 @@ while playing:
     answer = input()
     if answer == "N":
         playing = False
-
+# Final message
 print("Thanks for playing!")
 print(f"You won {wins} out of {total_games} games!")
