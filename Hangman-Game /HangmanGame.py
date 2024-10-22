@@ -17,7 +17,7 @@ def display_hangman(tries):
                    |   |
                    |   O
                    |  /|\\
-                   |  /
+                   |  / 
                    |
                 """,
                 """ 
@@ -25,7 +25,7 @@ def display_hangman(tries):
                    |   |
                    |   O
                    |  /|
-                   |  /
+                   |  / 
                    |
                 """,
                 """ 
@@ -33,7 +33,7 @@ def display_hangman(tries):
                    |   |
                    |   O
                    |   |
-                   |  /
+                   |  / 
                    |
                 """,
                 """ 
@@ -53,7 +53,7 @@ def display_hangman(tries):
                    |
                 """
     ]
-    return stages[tries]
+    return stages[min(tries, 5)]
 
 def play_game():
     word = choose_word()
