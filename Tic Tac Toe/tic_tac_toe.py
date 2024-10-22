@@ -38,8 +38,17 @@ def play_game():
         print_board(board)
 
         # Get user input (adjusted to use 1, 2, 3)
-        row = int(input(f"Player {current_player}, enter the row (1, 2, or 3): ")) - 1
-        col = int(input(f"Player {current_player}, enter the column (1, 2, or 3): ")) - 1
+        try:
+            row = int(input(f"Player {current_player}, enter the row (1, 2, or 3): ")) - 1
+            col = int(input(f"Player {current_player}, enter the column (1, 2, or 3): ")) - 1
+
+            # Check if the input is valid
+            if row not in [0, 1, 2] or col not in [0, 1, 2]:
+                print("Invalid input! Please enter numbers between 1 and 3.")
+                continue
+        except ValueError:
+            print("Invalid input! Please enter a number.")
+            continue
 
         # Check if the cell is already taken
         if board[row][col] != " ":
@@ -62,10 +71,7 @@ def play_game():
             break
 
         # Switch players
-        if current_player == "X":
-            current_player = "O"
-        else:
-            current_player = "X"
+        current_player = "O" if current_player == "X" else "X"
 
 # Start the game
 play_game()
