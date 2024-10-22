@@ -6,15 +6,15 @@ def roll_dice():
   
 def dice_roller():
     while True:
-        # taking input from user
+        # Taking input from user
         roll = input("Press 'r' to roll the dice, or 'q' to quit: ").lower()
 
         if roll == 'r':
             result = roll_dice()
             print(f"You rolled a {result}!")
         elif roll == 'q':
-              print("Thanks for playing! Goodbye!")
-            break
+            print("Thanks for playing! Goodbye!")
+            break  # Correct indentation
         else:
             print("Invalid input. Please press 'r' to roll or 'q' to quit.")
           
