@@ -1,5 +1,6 @@
 import random
 # initialize variables
+
 wins = 0
 total_games = 0
 playing = True
