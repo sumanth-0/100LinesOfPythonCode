@@ -1,3 +1,5 @@
+# Improvements :Add Error Handling and User Experience features. Updated code
+
 class Expense:
     def __init__(self, description, amount):  # Initialize with description and amount
         self.description = description
@@ -43,14 +45,21 @@ def main():  # Main function to run the tracker
 
         if choice == "1":
             description = input("Enter expense description: ")  
-            amount = float(input("Enter amount: "))
-            tracker.add_expense(description, amount)  
+            try:
+                amount = float(input("Enter amount: "))
+                tracker.add_expense(description, amount)  
+            except ValueError:
+                print("Invalid amount. Please enter a numeric value.")
         elif choice == "2":
             tracker.view_expenses()  
         elif choice == "3":
             tracker.view_expenses()  
-            expense_num = int(input("Expense number to delete: "))
-            tracker.delete_expense(expense_num) 
+            try:
+                expense_num = int(input("Expense number to delete: "))
+                tracker.delete_expense(expense_num) 
+                tracker.view_expenses()  # Show updated expenses after deletion
+            except ValueError:
+                print("Invalid input. Please enter a number.")
         elif choice == "4":
             print("Goodbye!")  # Exit program
             break
