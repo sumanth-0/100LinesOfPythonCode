@@ -4,3 +4,7 @@ It should provide something interesting—this could be a unique algorithm, a co
 Name your file using a descriptive title of what the code does.
 
 One more importing thing add your python or ipynb file in a new folder and ask for the pull request.
+
+Fork & Star ⭐ the repository to show your support.
+Submit a Pull Request 🔄 with your changes—whether it's fixing a bug or adding an exciting new feature.
+Follow the Guidelines 📜 to ensure that your PR aligns with our contribution standards.
