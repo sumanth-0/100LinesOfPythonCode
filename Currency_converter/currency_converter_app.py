@@ -1,4 +1,5 @@
-# run pip install --user currencyconverter to access the package to get live conversion rates
+# run    pip install --user currencyconverter 
+# to access the package to get live conversion rates
 from currency_converter import CurrencyConverter
 c = CurrencyConverter()
 
