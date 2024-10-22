@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Web Scraper</h1>
+
+<form method="POST">
+    <label for="url">Enter URL:</label>
+    <input type="text" id="url" name="url" placeholder="https://example.com" required>
+
+    <label for="method">Select Scraping Method:</label>
+    <select id="method" name="method" required>
+        <option value="playwright">Playwright</option>
+        <option value="beautifulsoup">BeautifulSoup</option>
+        <option value="lxml">lxml</option>
+    </select>
+
+    <button type="submit">Scrape</button>
+</form>
+
+{% if scraped_content %}
+<div class="result">
+    <h2>Scraped Content:</h2>
+    <p>{{ scraped_content }}</p>
+</div>
+{% elif error_message %}
+<div class="error">{{ error_message }}</div>
+{% endif %}
+
+</body>
+</html>
