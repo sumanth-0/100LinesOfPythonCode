@@ -1,4 +1,5 @@
 # Simple To-Do List in Python
+# Added error handling for user input when completing and deleting tasks
 
 class Task:
     def __init__(self, description):  # Initialize task with description
@@ -35,7 +36,7 @@ class ToDoList:
         try:
             removed_task = self.tasks.pop(task_num - 1)  # Remove task by index
             print(f"Deleted: {removed_task.description}")
-        except IndexError:  #Handle tasks which are invalid
+        except IndexError:  # Handle tasks which are invalid
             print("Invalid task number!")
 
 def display_menu():  # Display menu options
@@ -52,9 +53,19 @@ def main():  # Main function to run the app
         elif choice == "2":
             todo.view_tasks()  # View tasks
         elif choice == "3":
-            todo.complete_task(int(input("Task number to complete: ")))  # Complete task
+            try:
+                task_num = int(input("Task number to complete: "))
+                todo.complete_task(task_num)  # Complete task
+                todo.view_tasks()  # Show updated tasks after completing
+            except ValueError:
+                print("Invalid input. Please enter a number.")
         elif choice == "4":
-            todo.delete_task(int(input("Task number to delete: ")))  # Delete task
+            try:
+                task_num = int(input("Task number to delete: "))
+                todo.delete_task(task_num)  # Delete task
+                todo.view_tasks()  # Show updated tasks after deletion
+            except ValueError:
+                print("Invalid input. Please enter a number.")
         elif choice == "5":
             print("Goodbye!")  # Exit program
             break
