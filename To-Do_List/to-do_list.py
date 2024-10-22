@@ -35,7 +35,7 @@ class ToDoList:
         try:
             removed_task = self.tasks.pop(task_num - 1)  # Remove task by index
             print(f"Deleted: {removed_task.description}")
-        except IndexError:  # Handle invalid task number
+        except IndexError:  #Handle tasks which are invalid
             print("Invalid task number!")
 
 def display_menu():  # Display menu options
