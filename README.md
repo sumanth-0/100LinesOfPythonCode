@@ -17,9 +17,7 @@ Do not use spaces for folder or file names,just use the undersecores '___' for w
 
 
 
-![playlist title_ electro swing](https://github.com/user-attachments/assets/9a4d7412-9a84-40ed-bd96-e0e143cc11ff)
 
-![3a1b3197-4a1a-4ffc-ad65-f39631bca6ea](https://github.com/user-attachments/assets/765a9e6e-e504-4f0a-a891-e110cb1736ca)
 ![0b36cccc-6368-4be7-9a6c-7e200ad71445](https://github.com/user-attachments/assets/7ad5e267-fca4-4fd0-a6ec-eb94909624bc)
-![Wallpaler arayana](https://github.com/user-attachments/assets/060df82e-7b9b-4d7e-b437-713e563b459a)
+
 
