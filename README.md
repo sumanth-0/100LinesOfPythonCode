@@ -16,4 +16,5 @@ Do remember dont wait for me to assign a issue to you. Start working on a snippe
 Do not use spaces for folder or file names,just use the undersecores '___' for writing names
 
 
-![Wallpaler arayana](https://github.com/user-attachments/assets/8b4507ac-d39f-4468-a1b4-2473e276c990)
+
+![ed1125e9-2335-40e4-a622-4b92ec097da3](https://github.com/user-attachments/assets/98ffdcff-9478-4469-a52c-9d5f4e8fb10c)
