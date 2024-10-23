@@ -9,3 +9,6 @@ And if possible add your read.me file in your folder giving a explanation of you
 Fork & Star ⭐ the repository to show your support.
 Submit a Pull Request 🔄 with your changes—whether it's fixing a bug or adding an exciting new feature.
 Follow the Guidelines 📜 to ensure that your PR aligns with our contribution standards.
+
+**Note**
+Do not use spaces for folder or file names,just use the undersecores '___' for writing names
