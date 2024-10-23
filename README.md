@@ -17,4 +17,5 @@ Do not use spaces for folder or file names,just use the undersecores '___' for w
 
 
 
-![ed1125e9-2335-40e4-a622-4b92ec097da3](https://github.com/user-attachments/assets/98ffdcff-9478-4469-a52c-9d5f4e8fb10c)
+
+![Python logo letter art](https://github.com/user-attachments/assets/cfb6e4ac-2cf9-4424-8254-1ead5d0f33b1)
