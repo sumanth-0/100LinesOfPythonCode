@@ -4,7 +4,7 @@ from PIL import Image
 import io
 
 # Configure Google API key
-genai.configure(api_key='AIzaSyByfPNLCfyz8g_KWU2_vrrLV32oFUFFT2A')
+genai.configure(api_key='Insert_your_gemini_key_here')
 
 # Initialize Gemini model
 model = genai.GenerativeModel('gemini-1.5-flash')
