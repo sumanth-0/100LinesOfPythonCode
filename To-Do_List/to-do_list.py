@@ -1,13 +1,15 @@
 import tkinter as tk
 from tkinter import messagebox
 from tkcalendar import DateEntry
-import sqlite3
+import sqlite3, speech_recognition as sr, pyttsx3
 
 class TodoApp:
     def __init__(self, root):
         self.root = root
         self.root.title("To-Do List")
         self.root.geometry("600x400")
+        self.engine = pyttsx3.init()
+        self.recognizer = sr.Recognizer()
         self.main_frame = tk.Frame(self.root, bg="#2E2E2E")
         self.main_frame.pack(fill=tk.BOTH, expand=True)
         self.create_widgets()
@@ -30,41 +32,28 @@ class TodoApp:
         self.due_date_entry = DateEntry(frame, width=20, date_pattern='yyyy-mm-dd', background='#4B4B4B', foreground='white', relief="flat")
         self.due_date_entry.grid(row=2, column=1, padx=5, pady=5)
 
-        self.add_task_button = tk.Button(frame, text="Add Task", command=self.add_task, bg="#5A5A5A", fg="#FFFFFF", relief="flat")
-        self.add_task_button.grid(row=3, column=1, sticky="e", pady=10)
-
-        self.task_listbox = tk.Listbox(self.main_frame, bg="#2E2E2E", fg="#FFFFFF", height=15, relief="flat")
+        tk.Button(frame, text="Add Task", command=self.add_task, bg="#5A5A5A", fg="#FFFFFF", relief="flat").grid(row=3, column=1, sticky="e", pady=10)
+        self.task_listbox = tk.Listbox(self.main_frame, bg="#2E2E2E", fg="#FFFFFF", height=10, relief="flat")
         self.task_listbox.pack(pady=10, padx=20, fill=tk.BOTH, expand=True)
 
-        self.delete_task_button = tk.Button(self.main_frame, text="Delete Task", command=self.delete_task, bg="#5A5A5A", fg="#FFFFFF", relief="flat")
-        self.delete_task_button.pack(pady=5)
+        tk.Button(self.main_frame, text="Delete Task", command=self.delete_task, bg="#5A5A5A", fg="#FFFFFF", relief="flat").pack(pady=5)
+        tk.Button(self.main_frame, text="Voice Command", command=self.voice_command, bg="#5A5A5A", fg="#FFFFFF", relief="flat").pack(pady=5)
 
     def create_database(self):
         self.conn = sqlite3.connect("tasks.db")
         with self.conn:
-            self.conn.execute("""
-                CREATE TABLE IF NOT EXISTS tasks (
-                    id INTEGER PRIMARY KEY,
-                    task TEXT NOT NULL,
-                    category TEXT,
-                    due_date TEXT
-                )
-            """)
+            self.conn.execute("CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY, task TEXT, category TEXT, due_date TEXT)")
 
     def load_tasks(self):
         self.task_listbox.delete(0, tk.END)
-        cursor = self.conn.cursor()
-        cursor.execute("SELECT * FROM tasks")
-        for row in cursor.fetchall():
+        for row in self.conn.execute("SELECT * FROM tasks"):
             self.task_listbox.insert(tk.END, f"{row[0]}: {row[1]} | {row[2]} | Due: {row[3]}")
 
     def add_task(self):
-        task = self.task_entry.get()
-        category = self.category_entry.get()
-        due_date = self.due_date_entry.get()
+        task, category, due_date = self.task_entry.get(), self.category_entry.get(), self.due_date_entry.get()
         if task and category and due_date:
-            with self.conn:
-                self.conn.execute("INSERT INTO tasks (task, category, due_date) VALUES (?, ?, ?)", (task, category, due_date))
+            self.conn.execute("INSERT INTO tasks (task, category, due_date) VALUES (?, ?, ?)", (task, category, due_date))
+            self.conn.commit()
             self.load_tasks()
             self.task_entry.delete(0, tk.END)
             self.category_entry.delete(0, tk.END)
@@ -72,12 +61,28 @@ class TodoApp:
             messagebox.showwarning("Input Error", "Please fill all fields.")
 
     def delete_task(self):
-        selected_task = self.task_listbox.get(tk.ACTIVE)
-        if selected_task:
-            task_id = selected_task.split(":")[0]
-            with self.conn:
-                self.conn.execute("DELETE FROM tasks WHERE id=?", (task_id,))
+        selected = self.task_listbox.get(tk.ACTIVE)
+        if selected:
+            task_id = selected.split(":")[0]
+            self.conn.execute("DELETE FROM tasks WHERE id=?", (task_id,))
+            self.conn.commit()
             self.load_tasks()
+
+    def voice_command(self):
+        with sr.Microphone() as source:
+            audio = self.recognizer.listen(source)
+        try:
+            command = self.recognizer.recognize_google(audio).lower()
+            if "add task" in command:
+                task = command.replace("add task", "").strip()
+                self.task_entry.delete(0, tk.END)
+                self.task_entry.insert(0, task)
+            elif "delete task" in command:
+                self.delete_task()
+            self.engine.say(f"Command executed: {command}")
+        except:
+            self.engine.say("Sorry, I couldn't understand that.")
+        self.engine.runAndWait()
 
 if __name__ == "__main__":
     root = tk.Tk()
