@@ -1,76 +1,90 @@
-# Simple To-Do List in Python
-# Added error handling for user input when completing and deleting tasks
+import tkinter as tk
+from tkinter import messagebox
+from tkcalendar import DateEntry
+import sqlite3, speech_recognition as sr, pyttsx3
 
-class Task:
-    def __init__(self, description):  # Initialize task with description
-        self.description = description
-        self.completed = False  # Track if the task is complete
+class TodoApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("To-Do List")
+        self.root.geometry("600x400")
+        self.engine = pyttsx3.init()
+        self.recognizer = sr.Recognizer()
+        self.main_frame = tk.Frame(self.root, bg="#2E2E2E")
+        self.main_frame.pack(fill=tk.BOTH, expand=True)
+        self.create_widgets()
+        self.create_database()
+        self.load_tasks()
 
-    def __str__(self):  # String representation of the task
-        status = "✓" if self.completed else "✗"  # Mark complete or incomplete
-        return f"{self.description} [{status}]"
+    def create_widgets(self):
+        frame = tk.Frame(self.main_frame, bg="#2E2E2E", padx=10, pady=10)
+        frame.pack(pady=20, padx=20, fill=tk.BOTH, expand=True)
 
-class ToDoList:
-    def __init__(self):  # Initialize an empty to-do list
-        self.tasks = []
+        tk.Label(frame, text="Task:", bg="#2E2E2E", fg="#FFFFFF").grid(row=0, column=0, sticky="w")
+        self.task_entry = tk.Entry(frame, width=50, bg="#4B4B4B", fg="#FFFFFF", relief="flat")
+        self.task_entry.grid(row=0, column=1, padx=5, pady=5)
 
-    def add_task(self, description):  # Add a new task to the list
-        self.tasks.append(Task(description))
-        print(f"Added: {description}")
+        tk.Label(frame, text="Category:", bg="#2E2E2E", fg="#FFFFFF").grid(row=1, column=0, sticky="w")
+        self.category_entry = tk.Entry(frame, width=50, bg="#4B4B4B", fg="#FFFFFF", relief="flat")
+        self.category_entry.grid(row=1, column=1, padx=5, pady=5)
 
-    def view_tasks(self):  # Display all tasks
-        if not self.tasks:
-            print("No tasks available!")  # If the list is empty
+        tk.Label(frame, text="Due Date:", bg="#2E2E2E", fg="#FFFFFF").grid(row=2, column=0, sticky="w")
+        self.due_date_entry = DateEntry(frame, width=20, date_pattern='yyyy-mm-dd', background='#4B4B4B', foreground='white', relief="flat")
+        self.due_date_entry.grid(row=2, column=1, padx=5, pady=5)
+
+        tk.Button(frame, text="Add Task", command=self.add_task, bg="#5A5A5A", fg="#FFFFFF", relief="flat").grid(row=3, column=1, sticky="e", pady=10)
+        self.task_listbox = tk.Listbox(self.main_frame, bg="#2E2E2E", fg="#FFFFFF", height=10, relief="flat")
+        self.task_listbox.pack(pady=10, padx=20, fill=tk.BOTH, expand=True)
+
+        tk.Button(self.main_frame, text="Delete Task", command=self.delete_task, bg="#5A5A5A", fg="#FFFFFF", relief="flat").pack(pady=5)
+        tk.Button(self.main_frame, text="Voice Command", command=self.voice_command, bg="#5A5A5A", fg="#FFFFFF", relief="flat").pack(pady=5)
+
+    def create_database(self):
+        self.conn = sqlite3.connect("tasks.db")
+        with self.conn:
+            self.conn.execute("CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY, task TEXT, category TEXT, due_date TEXT)")
+
+    def load_tasks(self):
+        self.task_listbox.delete(0, tk.END)
+        for row in self.conn.execute("SELECT * FROM tasks"):
+            self.task_listbox.insert(tk.END, f"{row[0]}: {row[1]} | {row[2]} | Due: {row[3]}")
+
+    def add_task(self):
+        task, category, due_date = self.task_entry.get(), self.category_entry.get(), self.due_date_entry.get()
+        if task and category and due_date:
+            self.conn.execute("INSERT INTO tasks (task, category, due_date) VALUES (?, ?, ?)", (task, category, due_date))
+            self.conn.commit()
+            self.load_tasks()
+            self.task_entry.delete(0, tk.END)
+            self.category_entry.delete(0, tk.END)
         else:
-            for i, task in enumerate(self.tasks, 1):  # Enumerate tasks for numbering
-                print(f"{i}. {task}")
+            messagebox.showwarning("Input Error", "Please fill all fields.")
 
-    def complete_task(self, task_num):  # Mark a task as complete
+    def delete_task(self):
+        selected = self.task_listbox.get(tk.ACTIVE)
+        if selected:
+            task_id = selected.split(":")[0]
+            self.conn.execute("DELETE FROM tasks WHERE id=?", (task_id,))
+            self.conn.commit()
+            self.load_tasks()
+
+    def voice_command(self):
+        with sr.Microphone() as source:
+            audio = self.recognizer.listen(source)
         try:
-            self.tasks[task_num - 1].completed = True  # Mark task complete by index
-            print(f"Task {task_num} marked complete.")
-        except IndexError:  # Handle invalid task number
-            print("Invalid task number!")
-
-    def delete_task(self, task_num):  # Delete a task from the list
-        try:
-            removed_task = self.tasks.pop(task_num - 1)  # Remove task by index
-            print(f"Deleted: {removed_task.description}")
-        except IndexError:  # Handle tasks which are invalid
-            print("Invalid task number!")
-
-def display_menu():  # Display menu options
-    print("\n1. Add Task\n2. View Tasks\n3. Mark Task Complete\n4. Delete Task\n5. Exit")
-
-def main():  # Main function to run the app
-    todo = ToDoList()  # Create a ToDoList object
-    while True:
-        display_menu()  # Show menu
-        choice = input("Choose an option (1-5): ")
-
-        if choice == "1":
-            todo.add_task(input("Enter task description: "))  # Add task
-        elif choice == "2":
-            todo.view_tasks()  # View tasks
-        elif choice == "3":
-            try:
-                task_num = int(input("Task number to complete: "))
-                todo.complete_task(task_num)  # Complete task
-                todo.view_tasks()  # Show updated tasks after completing
-            except ValueError:
-                print("Invalid input. Please enter a number.")
-        elif choice == "4":
-            try:
-                task_num = int(input("Task number to delete: "))
-                todo.delete_task(task_num)  # Delete task
-                todo.view_tasks()  # Show updated tasks after deletion
-            except ValueError:
-                print("Invalid input. Please enter a number.")
-        elif choice == "5":
-            print("Goodbye!")  # Exit program
-            break
-        else:
-            print("Invalid choice, try again.")  # Handle invalid input
+            command = self.recognizer.recognize_google(audio).lower()
+            if "add task" in command:
+                task = command.replace("add task", "").strip()
+                self.task_entry.delete(0, tk.END)
+                self.task_entry.insert(0, task)
+            elif "delete task" in command:
+                self.delete_task()
+            self.engine.say(f"Command executed: {command}")
+        except:
+            self.engine.say("Sorry, I couldn't understand that.")
+        self.engine.runAndWait()
 
 if __name__ == "__main__":
-    main()  # Run the program
+    root = tk.Tk()
+    app = TodoApp(root)
+    root.mainloop()

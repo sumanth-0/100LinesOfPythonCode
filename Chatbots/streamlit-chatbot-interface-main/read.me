@@ -1,0 +1,18 @@
+Streamlit Chatbot Interface
+This project is a simple chatbot interface built using Streamlit and OpenAI's GPT model (specifically GPT-3.5 Turbo). It features chat history persistence using Shelve for local storage, and allows users to reset the chat history via a sidebar button.
+
+Features
+Interactive Chat Interface: Users can input queries and receive responses from the OpenAI GPT model in real time.
+Persistent Chat History: Conversations are saved locally using shelve, ensuring chat history is maintained across sessions.
+Chat Reset: Users can reset/delete their chat history with a button in the sidebar.
+Model Customization: You can specify which OpenAI model to use for completions (default is gpt-3.5-turbo).
+Technologies Used
+Streamlit: For creating the web-based user interface.
+OpenAI API: For handling AI-based conversation responses.
+Shelve: For local persistence of chat history.
+dotenv: To securely load API keys from environment variables.
+Prerequisites
+Before running the application, make sure you have the following:
+
+Python 3.7+ installed on your machine.
+OpenAI API key. You can get one from OpenAI's platform.
