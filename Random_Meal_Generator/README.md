@@ -8,7 +8,7 @@ A command-line tool to help you decide what to eat today! This program randomly 
 ## Features
 
 - **Randomized Meal Selection**: The tool picks a random appetizer, main course, and dessert from predefined lists, offering a unique combination each time.
-- **Colorful Output**: Using the `colorama` library, the output is formatted with color, making the meal suggestion visually appealing.
+- **Colorful Output**: Using the `colorama` library, the output is formatted with color, making the meal suggestion visually appealing..
 - **Cross-Platform Compatibility**: Works on Windows, Mac, and Linux, thanks to `colorama`.
 
 ## Sample Output
