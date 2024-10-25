@@ -8,16 +8,19 @@ A command-line tool to help you decide what to eat today! This program randomly 
 ## Features
 
 - **Randomized Meal Selection**: The tool picks a random appetizer, main course, and dessert from predefined lists, offering a unique combination each time.
-- **Colorful Output**: Using the `colorama` library, the output is formatted with color, making the meal suggestion visually appealing..
+- **Calorie-Based Selection**: The user specifies a desired daily calorie intake, and the tool will select meals with a total calorie count that is less than or equal to the user’s input.
+- **Minimum Calorie Notification**: If the user enters a calorie value that is too low, the tool notifies them of the minimum required calorie amount to generate a meal.
+- **Colorful Output**: Using the `colorama` library, the output is formatted with color, making the meal suggestion visually appealing.
 - **Cross-Platform Compatibility**: Works on Windows, Mac, and Linux, thanks to `colorama`.
 
 ## Sample Output
 
 ```
 ========Today's Meal Suggestion========
-Appetizer: Garlic Bread
-Main Course: Sushi
-Dessert: Brownie
+Appetizer: Garlic Bread - 150 calories
+Main Course: Sushi - 300 calories
+Dessert: Ice Cream - 250 calories
+Total Calories: 700
 =======================================
            Enjoy your meal!
 ```
@@ -55,7 +58,7 @@ To run the program, simply execute the script from your terminal:
 python meal_selector.py
 ```
 
-Each time you run it, the program will generate a new meal suggestion!
+Each time you run it, the program will generate a new meal suggestion based on your calorie intake.
 
 ---
 
@@ -68,13 +71,17 @@ The program uses the following components:
    - `colorama` for color formatting in the command-line output. The `init(autoreset=True)` function ensures that styles reset automatically after each print statement, making it platform-compatible.
 
 2. **Data**:
-   - Three lists (`appetizers`, `main_courses`, and `desserts`) store different meal options. These lists can be easily extended to add more choices.
+   - Three lists (`appetizers`, `main_courses`, and `desserts`) store different meal options, each with a corresponding calorie count.
+   - The minimum possible calorie intake is calculated from the lowest-calorie items in each category.
 
 3. **`pick_meal()` Function**:
-   - A simple function that randomly picks an item from each list and returns the selected items as a tuple.
+   - A simple function that randomly picks an item from each list and checks whether the total calories are within the user's specified limit.
 
-4. **Displaying the Output**:
-   - The program prints each part of the meal (appetizer, main course, dessert) with labels and colors for a more engaging experience.
+4. **Error Handling**:
+   - If the user enters a calorie count that is too low, the tool will notify them and ask for a new input.
+
+5. **Displaying the Output**:
+   - The program prints each part of the meal (appetizer, main course, dessert) with labels, calories, and total calories, formatted for a visually engaging experience.
 
 ---
 
