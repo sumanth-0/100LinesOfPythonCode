@@ -1,7 +1,8 @@
 import requests
+import tkinter as tk
+from tkinter import messagebox
 
-def get_weather(city):
-    api_key = "YOUR_API_KEY"  # Replace with your OpenWeatherMap API key
+def get_weather(api_key, city):
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
     
     # Create complete URL
@@ -11,28 +12,46 @@ def get_weather(city):
     response = requests.get(complete_url)
     return response.json()
 
-def display_weather(data):
+def display_weather(api_key, city):
+    data = get_weather(api_key, city)
     if data['cod'] == 200:
-        city = data['name']
+        city_name = data['name']
         temperature = data['main']['temp']
         humidity = data['main']['humidity']
         weather_desc = data['weather'][0]['description']
 
-        print(f"Weather in {city}:")
-        print(f"Temperature: {temperature}°C")
-        print(f"Humidity: {humidity}%")
-        print(f"Conditions: {weather_desc.capitalize()}")
+        result = (f"Weather in {city_name}:\n"
+                  f"Temperature: {temperature}°C\n"
+                  f"Humidity: {humidity}%\n"
+                  f"Conditions: {weather_desc.capitalize()}")
+        messagebox.showinfo("Weather Information", result)
     else:
-        print(f"City not found or error occurred.")
+        messagebox.showerror("Error", "City not found or error occurred.")
 
-def main():
-    print("Welcome to the Weather Dashboard!")
-    while True:
-        city = input("Enter city name (or type 'exit' to quit): ")
-        if city.lower() == 'exit':
-            break
-        weather_data = get_weather(city)
-        display_weather(weather_data)
+def on_submit():
+    api_key = api_key_entry.get()
+    city = city_entry.get()
+    if api_key and city:
+        display_weather(api_key, city)
+    else:
+        messagebox.showwarning("Warning", "Please enter both API key and city name.")
 
-if __name__ == "__main__":
-    main()
+# Create the main window
+root = tk.Tk()
+root.title("Weather Dashboard")
+
+# Create and place labels and entries
+tk.Label(root, text="Enter your OpenWeatherMap API Key:").pack(pady=10)
+api_key_entry = tk.Entry(root, width=50)
+api_key_entry.pack(pady=5)
+
+tk.Label(root, text="Enter city name:").pack(pady=10)
+city_entry = tk.Entry(root, width=50)
+city_entry.pack(pady=5)
+
+# Create and place submit button
+submit_button = tk.Button(root, text="Get Weather", command=on_submit)
+submit_button.pack(pady=20)
+
+# Start the GUI loop
+root.mainloop()
