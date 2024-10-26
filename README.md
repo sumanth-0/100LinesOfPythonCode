@@ -16,7 +16,7 @@ Do remember dont wait for me to assign a issue to you. Start working on a snippe
 Do not use spaces for folder or file names,just use the undersecores '___' for writing names
 ## Our Contributors
 <a href="https://github.com/sumanth-0/100LinesOfPythonCode/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=sumanth-0/100LinesOfPythonCode&max=50" />
+  <img src="https://contrib.rocks/image?repo=sumanth-0/100LinesOfPythonCode&max=60" />
 </a>
 
 
