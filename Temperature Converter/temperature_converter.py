@@ -37,14 +37,24 @@ def main():
     
     value = float(input("Enter the temperature value: "))
     from_unit = input("From unit (C/F/K): ").strip().upper()
-    to_unit = input("To unit (C/F/K): ").strip().upper()
+
+    # Restrict output options based on input unit
+    to_unit_options = {'C': ['F', 'K'], 'F': ['C', 'K'], 'K': ['C', 'F']}
+    if from_unit in to_unit_options:
+        to_unit = input(f"Convert to ({'/'.join(to_unit_options[from_unit])}): ").strip().upper()
+        while to_unit not in to_unit_options[from_unit]:
+            print(f"Invalid choice. Choose only {', '.join(to_unit_options[from_unit])}.")
+            to_unit = input(f"Convert to ({'/'.join(to_unit_options[from_unit])}): ").strip().upper()
+    else:
+        print("Invalid unit entered.")
+        return
 
     result = convert_temperature(value, from_unit, to_unit)
     
     if result is not None:
         print(f"{value} {from_unit} is {result:.2f} {to_unit}.")
     else:
-        print("Invalid conversion units.")
+        print("Conversion error.")
 
 if __name__ == "__main__":
     main()
