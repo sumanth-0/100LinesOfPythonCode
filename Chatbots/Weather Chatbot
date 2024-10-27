@@ -1,0 +1,34 @@
+# pip install requests
+# code for weather information chatbot
+import requests
+
+class WeatherChatbot:
+    def __init__(self, api_key):
+        self.api_key = api_key
+        self.base_url = "http://api.openweathermap.org/data/2.5/weather"
+    def get_weather(self, city):
+        url = f"{self.base_url}?q={city}&appid={self.api_key}&units=metric"
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            weather_description = data['weather'][0]['description']
+            temperature = data['main']['temp']
+            return f"The weather in {city} is currently {weather_description} with a temperature of {temperature}°C."
+        else:
+            return "Sorry, I couldn't find the weather information for that city."
+
+def main():
+    api_key = "YOUR_API_KEY"  # Replace with your OpenWeatherMap API key
+    bot = WeatherChatbot(api_key)
+    print("Welcome to the Weather Chatbot!")
+    print("You can ask for the weather in any city. Type 'exit' to quit.")
+    while True:
+        city = input("Enter a city: ")
+        if city.lower() == 'exit':
+            print("Goodbye!")
+            break
+        weather_info = bot.get_weather(city)
+        print(weather_info)
+
+if __name__ == "__main__":
+    main()
