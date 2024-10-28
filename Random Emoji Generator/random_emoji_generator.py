@@ -45,7 +45,7 @@ emojis = [
 # Function to get a random emoji or emoji combination
 def get_random_emojis():
     # Randomly decide the number of emojis (1 or between 2 and 5)
-    count = random.choice([1] + list(range(2, 6)))
+    count = random.choice([1] + list(range(2, 10)))
     return ''.join(random.choice(emojis) for _ in range(count))
 
 # Usage example: generate a random emoji or emoji combination
