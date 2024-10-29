@@ -8,7 +8,7 @@ class GradeTracker:
         current_total_weight = sum(self.syllabus.values())
         if current_total_weight + weight > 100:
             print(f"Error: Adding '{category}' with weight {weight}% would exceed the total of 100%.")
-            return  # or raise an exception, e.g., raise ValueError("Total weight exceeds 100%")
+            raise ValueError("Total weight exceeds 100%")
         self.syllabus[category] = weight
         self.grades[category] = []
 
