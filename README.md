@@ -9,7 +9,7 @@ Welcome to our project! We're excited to have you here. Below are some guideline
 1. **Code Requirements**
    - Your code must be under 100 lines.
    - It should be well-commented and easy to understand.
-   - It should provide something interesting—this could be a unique algorithm, a cool use case, or a clever trick in Python.
+   - It should provide something interesting—this could be a unique algorithm, a cool use case or a clever trick in Python.
 
 2. **File Structure**
    - Name your file using a descriptive title of what the code does.
