@@ -2,7 +2,7 @@
 
 We welcome contributions from developers of all skill levels! Whether you're submitting a Python snippet, fixing bugs, improving documentation, or adding new features, your contributions make a big difference.
 
-If you are a first-time contributor, see [this guide]() on how to contribute to open source.
+If you are a first-time contributor, see [this guide](https://opensource.guide/how-to-contribute/) on how to contribute to open source.
 
 Please note we have a [Code of Conduct](), please follow it in all your interactions with the project.
 
