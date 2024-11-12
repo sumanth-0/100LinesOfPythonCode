@@ -6,24 +6,22 @@ If you are a first-time contributor, see [this guide]() on how to contribute to 
 
 Please note we have a [Code of Conduct](), please follow it in all your interactions with the project.
 
+# Code Requirements
+
+Ensure your code snippet follows these requirements:
+
+- It is under 100 lines of code.
+- It is well-commented and easy to understand.
+- It provides something interesting - this could be a unique algorithm, a cool use case, or a clever trick in Python.
+- It follows Python’s [PEP 8 style guide](https://peps.python.org/pep-0008/) to keep the code clean and readable.
+
 # How to Contribute
 
-
-
-Mention the issue you made in 1) in your Pull Request, which will be then verified and merged accordingly.
-Ensure any install or build dependencies are removed before the end of the layer when doing a build.
-
-Please follow the steps below to contribute. Remember to:
-
-- Check if your idea is already implemented in our existing snippets
-- Follow Python’s [PEP 8 style guide](https://peps.python.org/pep-0008/) to keep the code clean and readable.
-- Keep your code under 100 lines.
-- Be respectful and collaborative when giving or receiving feedback on code reviews.
-- Add comments or suggestions to improve other submissions.
+Please follow the steps below to contribute. Remember to check if your idea is already implemented in our existing snippets.
 
 ## 1. Create an Issue
 
-Create a new [issue](https://github.com/sumanth-0/100LinesOfPythonCode/issues).
+Create a new [issue](https://github.com/sumanth-0/100LinesOfPythonCode/issues). Add a short title that describes your code and a brief description.
 
 ## 2. Fork the Repository
 
@@ -36,7 +34,7 @@ In the following page, click "Create fork". This will create a copy of the repos
 Clone your forked repository to your local machine with the following bash command:
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_NAME/100LinesOfPythonCode.git
+git clone https://github.com/<your-github-name>/100LinesOfPythonCode.git
 ```
 
 Navigate into the cloned directory:
@@ -63,18 +61,16 @@ Create a new folder and give it a short name that describes your script. Name yo
 
 **Note**: Do not use spaces in folder or file names; instead, use underscores (`_`) to separate words.
 
-Add your Python code file into your folder. Ensure your code follows these guidelines:
-
-- It must be under 100 lines of code.
-- It should be well-commented and easy to understand.
-- It should provide something interesting—this could be a unique algorithm, a cool use case, or a clever trick in Python.
+Add your Python code file into your folder.
 
 Add a README.md in that file which explains your script and any prerequisites it may have.
 
 ## 7. Test Your Code
+
 Ensure your code works by running it locally. If you can, write test cases to validate its functionality.
 
 ## 8. Commit and Push Your Changes
+
 After you've made your changes and tested your code, commit your work:
 
 ```bash
@@ -84,7 +80,12 @@ git push origin <your-branch-name>
 ```
 
 ## 9. Open a Pull Request
-Go to your forked repository on GitHub and click the "Compare & pull request" button. In the pull request, describe the changes you've made and why they are interesting. You may reference issues or discussions if necessary.
+
+Go to your forked repository on GitHub and click the "Compare & pull request" button. In the pull request:
+
+- Describe the changes you've made.
+- Tag the issue you created.
+- Reference discussions if necessary.
 
 We will review your pull request, and once approved, it will be merged into the main repository.
 
