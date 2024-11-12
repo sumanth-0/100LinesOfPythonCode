@@ -2,72 +2,91 @@
 
 We welcome contributions from developers of all skill levels! Whether you're submitting a Python snippet, fixing bugs, improving documentation, or adding new features, your contributions make a big difference.
 
-First time contributors can refer to various resources on how to make their first contribution, one which we would refer is [this.][first]
-Please note we have a code of conduct, please follow it in all your interactions with the project.
+If you are a first-time contributor, see [this guide]() on how to contribute to open source.
+
+Please note we have a [Code of Conduct](), please follow it in all your interactions with the project.
 
 # How to Contribute
-Please first discuss the change you wish to make via [issue](https://github.com/sumanth-0/100LinesOfPythonCode/issues), with the maintainers of this repository before making a change.
 
-## Pull Request Process--
-Create an issue and fork the repository, add a new folder with a name that describes your script in short. You'll place your Python script(s) in there.
-Add a README.md in that file which explains your script and any prerequisites it may have.
+
+
 Mention the issue you made in 1) in your Pull Request, which will be then verified and merged accordingly.
 Ensure any install or build dependencies are removed before the end of the layer when doing a build.
 
-1. Fork the Repository
-Fork the repository by clicking the "Fork" button at the top of this page. This will create a copy of the repository in your GitHub account.
+Please follow the steps below to contribute. Remember to:
 
-2. Clone Your Fork
-Clone your forked repository to your local machine with the following command:
+- Check if your idea is already implemented in our existing snippets
+- Follow Python’s [PEP 8 style guide](https://peps.python.org/pep-0008/) to keep the code clean and readable.
+- Keep your code under 100 lines.
+- Be respectful and collaborative when giving or receiving feedback on code reviews.
+- Add comments or suggestions to improve other submissions.
 
-bash/Terminal
+## 1. Create an Issue
 
-git clone https://github.com/sumanth-0/100LinesOfPythonCode.git
+Create a new [issue](https://github.com/sumanth-0/100LinesOfPythonCode/issues).
 
-3. Create a New Branch
-Before making any changes, create a new branch for your contribution:
+## 2. Fork the Repository
 
-bash/Terminal
-Copy code
-git checkout -b branch-name
-Replace branch-name with something descriptive, like add-python-snippet or fix-typo-in-docs.
+At the top of the [main repository page](https://github.com/sumanth-0/100LinesOfPythonCode/tree/main), click the "Fork" button. 
 
-4. Add Your Python Code
-Add your Python code snippet in the snippets/ directory. Ensure your code follows these guidelines:
+In the following page, click "Create fork". This will create a copy of the repository in your GitHub account.
 
-It must be under 100 lines of code.
-It should be well-commented and easy to understand.
-It should provide something interesting—this could be a unique algorithm, a cool use case, or a clever trick in Python.
-Name your file using a descriptive title of what the code does. For example:
+## 3. Clone Your Fork
 
-bash
-Copy code
-snippets/fibonacci_sequence.py
+Clone your forked repository to your local machine with the following bash command:
 
-5. Test Your Code
+```bash
+git clone https://github.com/YOUR_GITHUB_NAME/100LinesOfPythonCode.git
+```
+
+Navigate into the cloned directory:
+
+```bash
+cd 100LinesOfPythonCode
+```
+
+## 4. Create a New Branch
+
+Create a new branch for your contribution:
+
+```bash
+git checkout -b <your-branch-name>
+```
+
+Replace `<your-branch-name>` with something descriptive, like `add-python-snippet` or `fix-typo-in-docs`.
+
+## 5. Add Your Python Code and README.md
+
+Create a new folder and give it a short name that describes your script. Name your file using a descriptive title of what the code does. For example:
+
+`snippets/fibonacci_sequence.py`
+
+**Note**: Do not use spaces in folder or file names; instead, use underscores (`_`) to separate words.
+
+Add your Python code file into your folder. Ensure your code follows these guidelines:
+
+- It must be under 100 lines of code.
+- It should be well-commented and easy to understand.
+- It should provide something interesting—this could be a unique algorithm, a cool use case, or a clever trick in Python.
+
+Add a README.md in that file which explains your script and any prerequisites it may have.
+
+## 7. Test Your Code
 Ensure your code works by running it locally. If you can, write test cases to validate its functionality.
 
-6. Commit and Push Your Changes
+## 8. Commit and Push Your Changes
 After you've made your changes and tested your code, commit your work:
 
-bash
-Copy code
+```bash
 git add .
 git commit -m "Add <description-of-your-code>"
-git push origin branch-name
+git push origin <your-branch-name>
+```
 
-7. Open a Pull Request
-Go to your forked repository on GitHub, and click the "Compare & pull request" button. In the pull request, describe the changes you've made and why they are interesting. You may reference issues or discussions if necessary.
+## 9. Open a Pull Request
+Go to your forked repository on GitHub and click the "Compare & pull request" button. In the pull request, describe the changes you've made and why they are interesting. You may reference issues or discussions if necessary.
 
-8. Review and Merge
 We will review your pull request, and once approved, it will be merged into the main repository.
-
-# Contribution Guidelines
-Follow Python’s PEP 8 style guide to keep the code clean and readable.
-Make sure your code is under 100 lines.
-Be respectful and collaborative when giving or receiving feedback on code reviews.
-Feel free to add comments or suggestions to improve other submissions.
-When in doubt, check out our existing snippets to see if your idea has been implemented before.
 
 # Issues
 If you find a bug, have a question, or would like to suggest a new feature, feel free to open an issue. Please include a detailed description so we can understand the problem or feature request.
