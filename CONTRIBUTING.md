@@ -4,7 +4,7 @@ We welcome contributions from developers of all skill levels! Whether you're sub
 
 If you are a first-time contributor, see [this guide](https://opensource.guide/how-to-contribute/) on how to contribute to open source.
 
-Please note we have a [Code of Conduct](), please follow it in all your interactions with the project.
+Please follow [Code of Conduct](/CODE_OF_CONDUCT.MD) in all your interactions with the project.
 
 # Code Requirements
 
