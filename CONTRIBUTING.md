@@ -63,7 +63,7 @@ Create a new folder and give it a short name that describes your script. Name yo
 
 Add your Python code file into your folder.
 
-Add a README.md in that file which explains your script and any prerequisites it may have.
+Add a README.md into that folder which explains your script and any prerequisites it may have.
 
 ## 7. Test Your Code
 
