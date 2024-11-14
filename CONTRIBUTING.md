@@ -4,7 +4,7 @@ We welcome contributions from developers of all skill levels! Whether you're sub
 
 If you are a first-time contributor, see [this guide](https://opensource.guide/how-to-contribute/) on how to contribute to open source.
 
-Please note we have a [Code of Conduct](), please follow it in all your interactions with the project.
+Please follow [Code of Conduct](/CODE_OF_CONDUCT.MD) in all your interactions with the project.
 
 # Code Requirements
 
@@ -63,7 +63,7 @@ Create a new folder and give it a short name that describes your script. Name yo
 
 Add your Python code file into your folder.
 
-Add a README.md in that file which explains your script and any prerequisites it may have.
+Add a README.md into that folder which explains your script and any prerequisites it may have.
 
 ## 7. Test Your Code
 
