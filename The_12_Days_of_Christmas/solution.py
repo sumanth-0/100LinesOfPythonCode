@@ -40,3 +40,8 @@ for day_number in range(12):
 
     # Then, we just print each gift on a new line with the initial intro.
     print(intro, *gifts_to_print, sep="\n")
+
+# === CTA ===
+# Now is your turn!
+# Try to improve this code to get deeper in the Top 100 table!
+# https://code.golf/12-days-of-christmas#python
