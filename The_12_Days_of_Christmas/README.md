@@ -1,7 +1,7 @@
 # 12 Days of Christmas
 
 The code inside the [solution.py](./solution.py) file contains one of the many ways to complete the "12 Days of Christmas" Code Golf challenge. \
-In addition to the solution, it also includes an uncompressed and explained version of the algorithm used to reach the Top 100 table on https://code.golf (Bytes and Char).
+In addition to the solution, it also includes an uncompressed and explained version of the algorithm used to reach the Top 100 table on https://code.golf (Bytes and Char, at Python topic).
 
 The challenge consists of writing the following text with as few characters as possible:
 ```
