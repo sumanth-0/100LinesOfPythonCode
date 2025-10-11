@@ -1,20 +1,14 @@
 #!/usr/bin/env python3
 """Multilingual Flashcard Learning System - Interactive language learning tool"""
-
 import random
-import json
-import os
-from typing import Dict, List
+from typing import Dict
 
 class MultilingualFlashcards:
     def __init__(self):
         self.flashcards = {
-            'spanish': {'hola': 'hello', 'gracias': 'thank you', 'adiós': 'goodbye', 
-                       'agua': 'water', 'casa': 'house', 'libro': 'book', 'gato': 'cat'},
-            'french': {'bonjour': 'hello', 'merci': 'thank you', 'au revoir': 'goodbye',
-                      'eau': 'water', 'maison': 'house', 'livre': 'book', 'chat': 'cat'},
-            'german': {'hallo': 'hello', 'danke': 'thank you', 'auf wiedersehen': 'goodbye',
-                      'wasser': 'water', 'haus': 'house', 'buch': 'book', 'katze': 'cat'}
+            'spanish': {'hola': 'hello', 'gracias': 'thank you', 'adiós': 'goodbye', 'agua': 'water', 'casa': 'house', 'libro': 'book', 'gato': 'cat'},
+            'french': {'bonjour': 'hello', 'merci': 'thank you', 'au revoir': 'goodbye', 'eau': 'water', 'maison': 'house', 'livre': 'book', 'chat': 'cat'},
+            'german': {'hallo': 'hello', 'danke': 'thank you', 'auf wiedersehen': 'goodbye', 'wasser': 'water', 'haus': 'house', 'buch': 'book', 'katze': 'cat'}
         }
         self.score = 0
         self.total_questions = 0
@@ -23,8 +17,7 @@ class MultilingualFlashcards:
         """Display main menu"""
         print("\n" + "="*50)
         print("🌍 MULTILINGUAL FLASHCARD LEARNING SYSTEM 🌍")
-        print("="*50)
-        print("\nAvailable Languages:")
+        print("="*50 + "\n\nAvailable Languages:")
         for idx, lang in enumerate(self.flashcards.keys(), 1):
             print(f"{idx}. {lang.capitalize()} ({len(self.flashcards[lang])} words)")
         print(f"{len(self.flashcards) + 1}. Practice All Languages")
@@ -36,16 +29,12 @@ class MultilingualFlashcards:
         if language not in self.flashcards:
             print(f"❌ Language '{language}' not found!")
             return
-        
         cards = list(self.flashcards[language].items())
         random.shuffle(cards)
-        
         print(f"\n📚 Starting {language.capitalize()} practice ({num_questions} questions)\n")
-        
         for i, (foreign, english) in enumerate(cards[:num_questions], 1):
             print(f"Question {i}/{num_questions}: Translate '{foreign}' to English")
             answer = input("Your answer: ").strip().lower()
-            
             self.total_questions += 1
             if answer == english.lower():
                 print("✅ Correct!\n")
@@ -59,14 +48,11 @@ class MultilingualFlashcards:
         for lang, cards in self.flashcards.items():
             for foreign, english in cards.items():
                 all_cards.append((foreign, english, lang))
-        
         random.shuffle(all_cards)
         print(f"\n🌐 Practicing all languages ({num_questions} questions)\n")
-        
         for i, (foreign, english, lang) in enumerate(all_cards[:num_questions], 1):
             print(f"Question {i}/{num_questions} [{lang.capitalize()}]: Translate '{foreign}'")
             answer = input("Your answer: ").strip().lower()
-            
             self.total_questions += 1
             if answer == english.lower():
                 print("✅ Correct!\n")
@@ -91,7 +77,6 @@ class MultilingualFlashcards:
         while True:
             self.display_menu()
             choice = input("\nSelect an option: ").strip()
-            
             if choice == '1':
                 self.practice_language('spanish')
             elif choice == '2':
