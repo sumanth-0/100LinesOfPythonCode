@@ -3,20 +3,16 @@
 AI-Powered Code Style Formatter
 Automatically reformats Python code to conform to PEP8 and other style guidelines.
 """
-
-import ast
 import re
 import sys
-from typing import List, Tuple
-
 
 class CodeStyleFormatter:
     """Formats Python code according to PEP8 standards."""
-
+    
     def __init__(self, code: str):
         self.code = code
         self.lines = code.split('\n')
-
+    
     def format_indentation(self) -> str:
         """Fix indentation to 4 spaces per level."""
         formatted_lines = []
@@ -25,13 +21,12 @@ class CodeStyleFormatter:
             if not stripped:
                 formatted_lines.append('')
                 continue
-            # Count leading spaces/tabs
+            # Count leading spaces/tabs and normalize to 4-space indentation
             indent = len(line) - len(stripped)
-            # Normalize to 4-space indentation
             level = indent // 4
             formatted_lines.append('    ' * level + stripped)
         return '\n'.join(formatted_lines)
-
+    
     def fix_line_length(self, max_length: int = 79) -> str:
         """Ensure lines don't exceed max_length."""
         formatted_lines = []
@@ -42,8 +37,7 @@ class CodeStyleFormatter:
                 # Simple break at comma or space
                 indent = len(line) - len(line.lstrip())
                 words = line.split()
-                current_line = []
-                current_length = indent
+                current_line, current_length = [], indent
                 for word in words:
                     if current_length + len(word) + 1 <= max_length:
                         current_line.append(word)
@@ -55,7 +49,7 @@ class CodeStyleFormatter:
                 if current_line:
                     formatted_lines.append(' '.join(current_line))
         return '\n'.join(formatted_lines)
-
+    
     def fix_whitespace(self) -> str:
         """Fix whitespace around operators and commas."""
         formatted = self.code
@@ -66,7 +60,7 @@ class CodeStyleFormatter:
         # Remove trailing whitespace
         formatted = '\n'.join(line.rstrip() for line in formatted.split('\n'))
         return formatted
-
+    
     def fix_blank_lines(self) -> str:
         """Add proper blank lines between functions and classes."""
         lines = self.code.split('\n')
@@ -82,7 +76,7 @@ class CodeStyleFormatter:
             formatted.append(line)
             prev_line = line
         return '\n'.join(formatted)
-
+    
     def format(self) -> str:
         """Apply all formatting rules."""
         self.code = self.fix_whitespace()
@@ -90,7 +84,6 @@ class CodeStyleFormatter:
         self.code = self.format_indentation()
         self.code = self.fix_blank_lines()
         return self.code.strip() + '\n'
-
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
