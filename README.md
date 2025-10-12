@@ -24,7 +24,7 @@ Welcome to our project! We're excited to have you here. Below are some guideline
    - Don’t wait for an issue to be assigned to you. Start working on a snippet—even if there are duplicates, there will be good variations in the codes.
    - Feel free to submit your own issues or create a new one if you see a gap!
 
-**Note**: Do not use spaces in folder or file names; instead, use underscores (`___`) to separate words.
+**Important Note**: Do not use spaces in folder or file names; instead, use underscores (`___`) to separate words.
 
 ---
 
