@@ -39,5 +39,4 @@ python merge_pdfs.py merged_document.pdf ./reports
 
 # Merge specific PDFs listed manually
 python merge_pdfs.py combined.pdf chapter1.pdf chapter3.pdf chapter2.pdf
-
 ```
