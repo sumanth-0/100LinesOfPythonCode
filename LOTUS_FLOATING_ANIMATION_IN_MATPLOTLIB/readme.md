@@ -1,0 +1,3 @@
+README – Rotating Lotus Animation 🌸
+
+This Python script creates a rotating lotus flower animation using Matplotlib. The lotus is composed of two overlapping polygonal petal layers (green and pink) that rotate smoothly along a circular path. To enhance realism, each frame adds small vibrations and random angular shifts, giving the illusion of gentle movement. The lotus is surrounded by two blue ripple rings that subtly expand and contract, simulating water ripples. The background is light blue to represent a calm pond surface. The entire motion loop is animated using FuncAnimation, and runs continuously, showcasing a visually soothing blend of rotation, vibration, and ripple dynamics.
