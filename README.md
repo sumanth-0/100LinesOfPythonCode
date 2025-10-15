@@ -24,6 +24,7 @@ Welcome to our project! We're excited to have you here. Below are some guideline
 4. **Get Started**
    - Don’t wait for an issue to be assigned to you. Start working on a snippet—even if there are duplicates, there will be good variations in the codes.
    - Feel free to submit your own issues or create a new one if you see a gap!
+   - If you have any doubts feel free to use the discussions on github to ask the community about it.
 
 **Important Note**: Do not use spaces in folder or file names; instead, use underscores (`___`) to separate words.
 
