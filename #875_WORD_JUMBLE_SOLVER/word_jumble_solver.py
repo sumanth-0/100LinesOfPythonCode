@@ -2,15 +2,31 @@
 Word Jumble Solver
 Author: Diya Satish Kumar
 A fun Python game that challenges players to unscramble jumbled words.
+Now loads words from an external text file.
 """
 
 import random
 
+def load_words(filename):
+    """Reads words from a text file (one word per line)."""
+    try:
+        with open(filename, "r") as file:
+            # Strip spaces and remove empty lines
+            words = [line.strip() for line in file if line.strip()]
+        if not words:
+            print("⚠️ No words found in the file.")
+            exit()
+        return words
+    except FileNotFoundError:
+        print(f"❌ File '{filename}' not found.")
+        exit()
+
 def get_jumbled_word(word):
+    """Returns a shuffled version of the given word."""
     return ''.join(random.sample(word, len(word)))
 
 def play_game():
-    words = ["python", "developer", "keyboard", "coding", "challenge", "programming"]
+    words = load_words("words.txt")  # ← reads from your text file
     score = 0
 
     print("🔤 Welcome to the Word Jumble Game!")
