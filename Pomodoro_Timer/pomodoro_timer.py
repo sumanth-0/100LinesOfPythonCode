@@ -34,9 +34,6 @@ class PomodoroTimer:
         self.reset_button = tk.Button(root, text="Reset", command=self.reset_timer)
         self.reset_button.pack(side="left", padx=10, pady=10)
 
-        # Update timer every second
-        self.update_timer()
-
     def start_timer(self):
         if not self.is_running:
             self.is_running = True
@@ -66,7 +63,9 @@ class PomodoroTimer:
                 self.notify()
 
             self.update_display()
-            self.root.after(1000, self.update_timer)
+            # Only call update_timer again if the timer is still running
+            if self.is_running:
+                self.root.after(1000, self.update_timer)
 
     def update_display(self):
         minutes = self.time_left // 60

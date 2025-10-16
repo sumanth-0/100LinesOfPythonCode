@@ -10,6 +10,7 @@ Welcome to our project! We're excited to have you here. Below are some guideline
    - Your code must be under 100 lines.
    - It should be well-commented and easy to understand.
    - It should provide something interesting—this could be a unique algorithm, a cool use case or a clever trick in Python.
+   - You can use modularization — meaning your project can have multiple small Python files working together, as long as each file individually follows the 100-line limit.
 
 2. **File Structure**
    - Name your file using a descriptive title of what the code does.
@@ -19,10 +20,12 @@ Welcome to our project! We're excited to have you here. Below are some guideline
 3. **Submitting Your Work**
    - Submit a Pull Request 🔄 with your changes—whether it's fixing a bug or adding an exciting new feature.
    - Follow the [Guidelines](/CONTRIBUTING.md) 📜 to ensure that your PR aligns with our contribution standards.
+   - Pull Request & Issue Linking when submitting a Pull Request (PR), please reference any related issue in your PR description using GitHub’s keywords "Closes #884" or "Fixes #884" in the comments.
 
 4. **Get Started**
    - Don’t wait for an issue to be assigned to you. Start working on a snippet—even if there are duplicates, there will be good variations in the codes.
    - Feel free to submit your own issues or create a new one if you see a gap!
+   - If you have any doubts feel free to use the discussions on github to ask the community about it.
 
 **Important Note**: Do not use spaces in folder or file names; instead, use underscores (`___`) to separate words.
 
@@ -30,7 +33,7 @@ Welcome to our project! We're excited to have you here. Below are some guideline
 
 ## 🛠️ Our Contributors
 <a href="https://github.com/sumanth-0/100LinesOfPythonCode/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=sumanth-0/100LinesOfPythonCode&max=79" alt="Contributors" />
+  <img src="https://contrib.rocks/image?repo=sumanth-0/100LinesOfPythonCode&max=91" alt="Contributors" />
 </a>
 
 ---
