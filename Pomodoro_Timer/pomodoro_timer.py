@@ -1,5 +1,6 @@
 import tkinter as tk
 import time
+from plyer import notification 
 
 # Pomodoro Settings
 WORK_MIN = 25
@@ -74,10 +75,27 @@ class PomodoroTimer:
         self.label.config(text=f"{self.timer_type} Time")
 
     def notify(self):
+        # Determine the message and title based on the session that just finished
         if self.timer_type == "Break":
+            # If the new session is a 'Break', the Work session just finished.
+            title = "Work Session Complete!"
+            message = "Time for a well-deserved break! Take 5 minutes to rest."
             print("Time for a break!")
         else:
+            # If the new session is 'Work', the Break session just finished.
+            title = "Break is Over!"
+            message = "Time to focus. Get back to work!"
             print("Time to get back to work!")
+            
+        # Send the desktop notification
+        notification.notify(
+            title=title,
+            message=message,
+            app_name='Pomodoro Timer',
+            timeout=10 # Notification disappears after 10 seconds
+        )   
+
+
 
 # Run the Pomodoro Timer
 root = tk.Tk()
