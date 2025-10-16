@@ -20,6 +20,7 @@ Welcome to our project! We're excited to have you here. Below are some guideline
 3. **Submitting Your Work**
    - Submit a Pull Request 🔄 with your changes—whether it's fixing a bug or adding an exciting new feature.
    - Follow the [Guidelines](/CONTRIBUTING.md) 📜 to ensure that your PR aligns with our contribution standards.
+   - Pull Request & Issue Linking when submitting a Pull Request (PR), please reference any related issue in your PR description using GitHub’s keywords "Closes #884" or "Fixes #884" in the comments.
 
 4. **Get Started**
    - Don’t wait for an issue to be assigned to you. Start working on a snippet—even if there are duplicates, there will be good variations in the codes.
