@@ -7,6 +7,8 @@ Supports adding mood entries, viewing mood history, and basic statistics.
 import csv
 import os
 from datetime import datetime
+import matplotlib.pyplot as plt
+from collections import Counter
 
 
 class MoodLogger:
@@ -15,7 +17,16 @@ class MoodLogger:
     def __init__(self, filename="mood_log.csv"):
         """Initialize the mood logger with a CSV file."""
         self.filename = filename
-        self.moods = ["happy", "sad", "neutral","lost"] # add more mood words there
+        self.moods = [
+            "happy", "sad", "neutral", "lost",
+            "excited", "anxious", "calm", "angry",
+            "bored", "confident", "curious", "frustrated",
+            "hopeful", "lonely", "peaceful", "overwhelmed",
+            "relaxed", "surprised", "tired", "grateful",
+            "guilty", "nostalgic", "jealous", "motivated",
+            "nervous", "proud", "sadistic", "stressed",
+            "optimistic", "pensive", "playful", "resentful"
+        ]
         self._initialize_csv()
 
     def _initialize_csv(self):
@@ -27,7 +38,8 @@ class MoodLogger:
 
     def log_mood(self, mood, note=""):
         """Log a mood entry with current date and time."""
-        if mood.lower() not in self.moods:
+        mood = mood.lower()
+        if mood not in self.moods:
             print(f"Invalid mood! Please choose from: {', '.join(self.moods)}")
             return False
 
@@ -36,34 +48,49 @@ class MoodLogger:
 
         with open(self.filename, 'a', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
-            writer.writerow([current_date, current_time, mood.lower(), note])
+            writer.writerow([current_date, current_time, mood, note])
 
         print(f"Mood logged: {mood} on {current_date} at {current_time}")
         return True
 
     def view_history(self, days=7):
-        """Display mood history for the last N days."""
+        """Display and visualize mood history for the last N days."""
         if not os.path.exists(self.filename):
             print("No mood history found.")
             return
 
         with open(self.filename, 'r', encoding='utf-8') as file:
             reader = csv.reader(file)
-            next(reader)  # Skip header
+            next(reader)
             entries = list(reader)
 
         if not entries:
             print("No mood entries yet.")
             return
 
+
         print(f"\n{'='*60}")
-        print(f"Mood History (Last {min(days, len(entries))} entries)")
+        print(f"Mood History (Last {len(entries[-days:])} entries)")
         print(f"{'='*60}")
 
         for entry in entries[-days:]:
             date, time, mood, note = entry
             note_text = f" - {note}" if note else ""
             print(f"{date} {time}: {mood.upper()}{note_text}")
+
+        last_entries = entries[-days:]
+        moods_last_days = [entry[2] for entry in last_entries]
+        mood_counts = Counter(moods_last_days)
+        mood_counts = {mood: count for mood, count in mood_counts.items() if count > 0}
+
+        plt.figure(figsize=(10, 5))
+        plt.bar(mood_counts.keys(), mood_counts.values(), color='skyblue')
+        plt.title(f"Mood Distribution (Last {len(last_entries)} entries)")
+        plt.xlabel("Mood")
+        plt.ylabel("Count")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.show()
 
     def get_statistics(self):
         """Display mood statistics."""
@@ -73,7 +100,7 @@ class MoodLogger:
 
         with open(self.filename, 'r', encoding='utf-8') as file:
             reader = csv.reader(file)
-            next(reader)  # Skip header
+            next(reader)
             entries = list(reader)
 
         if not entries:
@@ -92,14 +119,13 @@ class MoodLogger:
         print(f"{'='*40}")
         print(f"Total entries: {total}")
         for mood, count in mood_counts.items():
-            percentage = (count / total) * 100 if total > 0 else 0
+            percentage = (count / total) * 100 if total else 0
             print(f"{mood.capitalize()}: {count} ({percentage:.1f}%)")
 
 
 def main():
     """Main function to run the mood logger."""
     logger = MoodLogger()
-
     print("\n" + "="*40)
     print("  Daily Mood Logger")
     print("="*40)
