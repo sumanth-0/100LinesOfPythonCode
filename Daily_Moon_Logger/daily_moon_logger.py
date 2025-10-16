@@ -15,6 +15,7 @@ class MoodLogger:
     """Manages daily mood logging with CSV storage."""
 
     def __init__(self, filename="mood_log.csv"):
+        """Initialize the mood logger with a CSV file."""
         self.filename = filename
         self.moods = [
             "happy", "sad", "neutral", "lost",
@@ -29,12 +30,14 @@ class MoodLogger:
         self._initialize_csv()
 
     def _initialize_csv(self):
+        """Create CSV file with headers if it doesn't exist."""
         if not os.path.exists(self.filename):
             with open(self.filename, 'w', newline='', encoding='utf-8') as file:
                 writer = csv.writer(file)
                 writer.writerow(["Date", "Time", "Mood", "Note"])
 
     def log_mood(self, mood, note=""):
+        """Log a mood entry with current date and time."""
         mood = mood.lower()
         if mood not in self.moods:
             print(f"Invalid mood! Please choose from: {', '.join(self.moods)}")
@@ -51,6 +54,7 @@ class MoodLogger:
         return True
 
     def view_history(self, days=7):
+        """Display and visualize mood history for the last N days."""
         if not os.path.exists(self.filename):
             print("No mood history found.")
             return
@@ -89,6 +93,7 @@ class MoodLogger:
         plt.show()
 
     def get_statistics(self):
+        """Display mood statistics."""
         if not os.path.exists(self.filename):
             print("No mood data available.")
             return
@@ -119,6 +124,7 @@ class MoodLogger:
 
 
 def main():
+    """Main function to run the mood logger."""
     logger = MoodLogger()
     print("\n" + "="*40)
     print("  Daily Mood Logger")
