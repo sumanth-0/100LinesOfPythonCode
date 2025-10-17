@@ -1,81 +1,121 @@
-import tkinter as tk
 import requests
 import time
+import os
+from datetime import datetime
 
-# Function to get the current cryptocurrency price
-def get_crypto_price(crypto_id):
-    url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto_id}&vs_currencies=usd"
-    response = requests.get(url)
-    data = response.json()
-    return data[crypto_id]['usd']
+# ANSI color codes for terminal
+class Colors:
+    GREEN = '\033[92m'
+    RED = '\033[91m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    CYAN = '\033[96m'
+    WHITE = '\033[97m'
+    BOLD = '\033[1m'
+    RESET = '\033[0m'
 
-# Function to update the prices in the GUI window
-def update_prices():
-    # Update Bitcoin price
-    btc_price = get_crypto_price('bitcoin')
-    btc_change = btc_price - old_prices['bitcoin']
-    btc_percentage_change = (btc_change / old_prices['bitcoin']) * 100
-    bitcoin_price_label.config(text=f"${btc_price:.2f}")
-    bitcoin_change_label.config(text=f"Change: ${btc_change:.2f} ({btc_percentage_change:.2f}%)")
-    bitcoin_change_label.config(fg="green" if btc_change >= 0 else "red")
-    old_prices['bitcoin'] = btc_price
-
-    # Update Ethereum price
-    eth_price = get_crypto_price('ethereum')
-    eth_change = eth_price - old_prices['ethereum']
-    eth_percentage_change = (eth_change / old_prices['ethereum']) * 100
-    ethereum_price_label.config(text=f"${eth_price:.2f}")
-    ethereum_change_label.config(text=f"Change: ${eth_change:.2f} ({eth_percentage_change:.2f}%)")
-    ethereum_change_label.config(fg="green" if eth_change >= 0 else "red")
-    old_prices['ethereum'] = eth_price
-
-    # Schedule the function to run again after the interval (in milliseconds)
-    root.after(interval * 1000, update_prices)
-
-# Setup the GUI window
-root = tk.Tk()
-root.title("Crypto Price Tracker")
-root.configure(bg="black")
-
-# Interval (time between updates in seconds)
-interval = 10
-
-# Initial prices setup
-old_prices = {
-    'bitcoin': get_crypto_price('bitcoin'),
-    'ethereum': get_crypto_price('ethereum')
+# Available cryptocurrencies
+AVAILABLE_CRYPTOS = {
+    '1': ('bitcoin', 'Bitcoin', 'BTC'),
+    '2': ('ethereum', 'Ethereum', 'ETH'),
+    '3': ('cardano', 'Cardano', 'ADA'),
+    '4': ('ripple', 'Ripple', 'XRP'),
+    '5': ('dogecoin', 'Dogecoin', 'DOGE'),
+    '6': ('polkadot', 'Polkadot', 'DOT'),
+    '7': ('solana', 'Solana', 'SOL'),
+    '8': ('litecoin', 'Litecoin', 'LTC')
 }
 
-# Add a title label
-title_label = tk.Label(root, text="Live Cryptocurrency Prices", font=("Arial", 24, "bold"), fg="green", bg="black")
-title_label.pack(pady=20)
+def clear_screen():
+    """Clear the terminal screen"""
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-# Set up Bitcoin section
-btc_frame = tk.Frame(root, bg="black")
-btc_frame.pack(pady=10)
+def get_crypto_prices(crypto_ids):
+    """Fetch cryptocurrency prices from CoinGecko API"""
+    crypto_string = ','.join(crypto_ids)
+    url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto_string}&vs_currencies=usd&include_24hr_change=true"
+    try:
+        response = requests.get(url)
+        return response.json()
+    except Exception as e:
+        print(f"{Colors.RED}Error fetching data: {e}{Colors.RESET}")
+        return None
 
-# Bitcoin labels
-bitcoin_label = tk.Label(btc_frame, text="Bitcoin (BTC)", font=("Arial", 20), fg="white", bg="black")
-bitcoin_label.pack()
-bitcoin_price_label = tk.Label(btc_frame, text=f"${old_prices['bitcoin']:.2f}", font=("Arial", 20), fg="green", bg="black")
-bitcoin_price_label.pack(pady=5)
-bitcoin_change_label = tk.Label(btc_frame, text="Change: $0.00 (0.00%)", font=("Arial", 16), fg="green", bg="black")
-bitcoin_change_label.pack()
+def display_prices(data, old_prices, crypto_info):
+    """Display cryptocurrency prices in terminal"""
+    clear_screen()
+    print(f"{Colors.BOLD}{Colors.CYAN}{'='*60}{Colors.RESET}")
+    print(f"{Colors.BOLD}{Colors.CYAN}{'LIVE CRYPTOCURRENCY PRICE TRACKER':^60}{Colors.RESET}")
+    print(f"{Colors.BOLD}{Colors.CYAN}{'='*60}{Colors.RESET}\n")
+    print(f"{Colors.WHITE}Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}{Colors.RESET}\n")
+    
+    for crypto_id, (name, symbol) in crypto_info.items():
+        if crypto_id in data:
+            price = data[crypto_id]['usd']
+            change_24h = data[crypto_id].get('usd_24h_change', 0)
+            
+            # Calculate change since last update
+            if crypto_id in old_prices:
+                price_change = price - old_prices[crypto_id]
+                change_color = Colors.GREEN if price_change >= 0 else Colors.RED
+                change_symbol = "▲" if price_change >= 0 else "▼"
+            else:
+                price_change = 0
+                change_color = Colors.WHITE
+                change_symbol = "●"
+            
+            change_24h_color = Colors.GREEN if change_24h >= 0 else Colors.RED
+            
+            print(f"{Colors.BOLD}{Colors.YELLOW}{name} ({symbol}){Colors.RESET}")
+            print(f"  Price: {Colors.BOLD}${price:,.2f}{Colors.RESET}")
+            print(f"  24h Change: {change_24h_color}{change_24h:+.2f}%{Colors.RESET}")
+            print(f"  Live Change: {change_color}{change_symbol} ${price_change:+.2f}{Colors.RESET}")
+            print()
 
-# Set up Ethereum section
-eth_frame = tk.Frame(root, bg="black")
-eth_frame.pack(pady=10)
+def select_cryptocurrencies():
+    """Allow user to select cryptocurrencies to track"""
+    clear_screen()
+    print(f"{Colors.BOLD}{Colors.CYAN}Select Cryptocurrencies to Track{Colors.RESET}\n")
+    
+    for key, (_, name, symbol) in AVAILABLE_CRYPTOS.items():
+        print(f"{key}. {name} ({symbol})")
+    
+    print(f"\n{Colors.YELLOW}Enter numbers separated by commas (e.g., 1,2,5) or 'all' for all:{Colors.RESET}")
+    selection = input("> ").strip().lower()
+    
+    if selection == 'all':
+        return {crypto_id: (name, symbol) for _, (crypto_id, name, symbol) in AVAILABLE_CRYPTOS.items()}
+    
+    selected = {}
+    for num in selection.split(','):
+        num = num.strip()
+        if num in AVAILABLE_CRYPTOS:
+            crypto_id, name, symbol = AVAILABLE_CRYPTOS[num]
+            selected[crypto_id] = (name, symbol)
+    
+    return selected if selected else {AVAILABLE_CRYPTOS['1'][0]: (AVAILABLE_CRYPTOS['1'][1], AVAILABLE_CRYPTOS['1'][2])}
 
-# Ethereum labels
-ethereum_label = tk.Label(eth_frame, text="Ethereum (ETH)", font=("Arial", 20), fg="white", bg="black")
-ethereum_label.pack()
-ethereum_price_label = tk.Label(eth_frame, text=f"${old_prices['ethereum']:.2f}", font=("Arial", 20), fg="green", bg="black")
-ethereum_price_label.pack(pady=5)
-ethereum_change_label = tk.Label(eth_frame, text="Change: $0.00 (0.00%)", font=("Arial", 16), fg="green", bg="black")
-ethereum_change_label.pack()
+def main():
+    """Main function to run the crypto price tracker"""
+    crypto_info = select_cryptocurrencies()
+    crypto_ids = list(crypto_info.keys())
+    old_prices = {}
+    
+    print(f"\n{Colors.GREEN}Fetching prices every 10 seconds. Press Ctrl+C to exit.{Colors.RESET}")
+    time.sleep(2)
+    
+    try:
+        while True:
+            data = get_crypto_prices(crypto_ids)
+            if data:
+                display_prices(data, old_prices, crypto_info)
+                # Update old prices for next comparison
+                for crypto_id in crypto_ids:
+                    if crypto_id in data:
+                        old_prices[crypto_id] = data[crypto_id]['usd']
+            time.sleep(10)
+    except KeyboardInterrupt:
+        print(f"\n\n{Colors.YELLOW}Thank you for using Crypto Price Tracker!{Colors.RESET}")
 
-# Start the price update loop
-root.after(interval * 1000, update_prices)
-
-# Run the GUI loop
-root.mainloop()
+if __name__ == "__main__":
+    main()
