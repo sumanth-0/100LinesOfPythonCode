@@ -6,3 +6,5 @@ This is a simple Python script that checks for duplicate files in a given folder
  Run the script:
    ```bash
    python duplicate_checker.py
+```
+#Contributer : BNS Karthek
