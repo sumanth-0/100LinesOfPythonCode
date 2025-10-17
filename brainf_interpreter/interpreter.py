@@ -1,4 +1,4 @@
-import sys
+import sys 
 def bf(code):
     """
     A simple BF interpreter that takes in BF code as input and executes it
