@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f7fa;
+    text-align: center;
+    padding: 40px;
+}
+
+h1 {
+    color: #007bff;
+}
+
+input {
+    padding: 8px;
+    width: 200px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#responseText {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    white-space: pre-line;
+}
+#lastGuess{
+	margin-top: 20px;
+	font-size: 16px;
+	color: blue
+}
