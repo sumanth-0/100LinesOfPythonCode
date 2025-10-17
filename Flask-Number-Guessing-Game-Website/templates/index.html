@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>🎯 Guess the Secret Number!</h1>
+    <p>Enter a number between <b>1</b> and <b>100</b></p>
+
+    <input id="guessInput" type="number" placeholder="Enter your guess">
+    <button onclick="submitGuess()">Submit Guess</button>
+
+    <p id="responseText"></p>
+    <br>
+    <p id="lastGuess"></p>
+    
+    <button onclick="getLastGuess()">Your last Guess</button>
+    <script>
+        async function submitGuess() {
+            const num = document.getElementById('guessInput').value;
+            if (!num) {
+                document.getElementById('responseText').innerText = "⚠️ Please enter a number.";
+                return;
+            }
+	
+            const res = await fetch('/api/guess', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ num })
+            });
+
+            const data = await res.json();
+            if (data.error) {
+                document.getElementById('responseText').innerText = "❌ " + data.error;
+            } else {
+                document.getElementById('responseText').innerText = 
+                    `Your Guess: ${data.your_guess}\nResult: ${data.result}`;
+            }
+        }
+        async function getLastGuess(){
+        	const res = await fetch('/api/status',{
+        	method: 'GET'
+        	});
+        	const data = await res.json();
+        	if('message' in data){
+        	document.getElementById('lastGuess').innerText=data.message;
+        	}
+        	else
+        	{
+        	document.getElementById('lastGuess').innerText=`Your last guess was: ${data.last_guess}`;
+        	}
+        }
+    </script>
+</body>
+</html>
