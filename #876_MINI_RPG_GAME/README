@@ -1,0 +1,53 @@
+# Arena RPG (Python Mini‑Game)
+
+A lightweight, text‑based arena battle game written in Python. Create your hero, face off against randomly generated enemies, and see how far you can climb through the arenas before you get overpowered.
+
+---
+
+## How to Play
+
+1. **Run the game**
+
+    ```bash
+    python rpg_game.py
+    ```
+
+2. **Create your character**
+
+    - Enter a name.
+    - Your stats (health, attack, skill, defense, speed) are rolled randomly.
+
+3. **Battle enemies**
+
+    - Each arena level spawns a new enemy with scaled stats.
+    - You’ll see your character’s health vs. the enemy’s health.
+    - Choose whether to continue or flee.
+    - Combat is turn‑based: the faster fighter attacks first.
+    - Each attack has a hit chance based on the attacker’s skill.
+    - Damage is calculated as `attack - defense`, with a minimum of 1.
+
+4. **Level up**
+
+    - Win a battle and your character’s stats may increase slightly.
+    - Health is restored after each victory.
+
+5. **Game over**
+    - If your health drops to 0, the game ends and you’ll see how far you got.
+
+---
+
+## Features
+
+-   **Randomized character creation**: Every run feels different.
+-   **Scaling enemies**: Each arena level increases enemy stats.
+-   **Turn‑based combat**: Speed determines who strikes first.
+-   **Hit chance system**: Skill influences accuracy.
+-   **Level‑up progression**: Survive long enough to grow stronger.
+-   **Simple, under‑100 lines**: Easy to read, modify, and extend.
+
+---
+
+## Requirements
+
+-   Python 3.7+
+-   No external libraries required (uses only `random`).
