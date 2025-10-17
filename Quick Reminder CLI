@@ -1,0 +1,22 @@
+import time
+import os
+import platform
+
+# Set reminder time in seconds
+reminder_time = 10  # 10 seconds
+
+# Message to display
+message = "⏰ Reminder: Take a short break!"
+
+# Wait for the specified time
+time.sleep(reminder_time)
+
+# Trigger beep
+if platform.system() == "Windows":
+    import winsound
+    winsound.Beep(1000, 500)
+else:
+    print('\a')  # ASCII bell character
+
+# Show terminal notification
+print(message)
