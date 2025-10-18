@@ -42,6 +42,8 @@ Welcome to our project! We're excited to have you here. Below are some guideline
 
 ![Image 1](https://github.com/user-attachments/assets/8872bb99-32e5-4a3b-8732-46261a2080f7)
 
+<img width="1920" height="857" alt="Screenshot (1935)" src="https://github.com/user-attachments/assets/3c581f19-a3fe-491c-96cc-5fd0cccb2620" />
+
 ![Image 2](https://github.com/user-attachments/assets/7ad5e267-fca4-4fd0-a6ec-eb94909624bc)
 
 ![Image 3](https://github.com/user-attachments/assets/245155e8-8a38-4f7d-8e53-5b70c8bdd092)
