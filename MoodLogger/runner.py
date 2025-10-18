@@ -61,7 +61,7 @@ def main():
     print("\n==============================\n      DAILY MOOD LOGGER       \n==============================\n")
     password=get_password()
     if input_password("Enter password: ").strip()!=password:
-        print("Wrong password. Access denied.\n"); return
+        print("Wrong password. Access denied.\n If you forgot password, please refer to the Markdown document here."); return
     init_csv(); logs=read_logs()
     print("\nOptions:\n1. Log/update today's mood\n2. Log/update past day\n3. View all history")
     choice=input("\nSelect (1-3): ").strip()
