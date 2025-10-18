@@ -1,4 +1,3 @@
-Here’s a clean **README** for your Mood Logger project, including instructions for **resetting the password**.
 
 ---
 
