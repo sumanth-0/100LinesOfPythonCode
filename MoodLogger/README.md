@@ -74,7 +74,7 @@ rm ~/.mood_pass
 
 2. Run `runner.py` again. The program will prompt you to **create a new password**.
 
-⚠️ **Note:** Deleting this file **does not affect your mood logs** — all past entries in `mood_log.csv` will remain intact.
+**Note:** Deleting this file **does not affect your mood logs** — all past entries in `mood_log.csv` will remain intact.
 
 ---
 
