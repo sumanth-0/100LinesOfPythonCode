@@ -1,3 +1,6 @@
+Here’s a clean **README** for your Mood Logger project, including instructions for **resetting the password**.
+
+---
 
 # Daily Mood Logger CLI
 
@@ -7,13 +10,13 @@ A simple command-line interface (CLI) tool to log and track your daily mood, wit
 
 ## Features
 
-- Log your **mood once per day**.
-- Update existing entries for today or any past date.
-- Optional notes for each mood entry.
-- View **full mood history**.
-- **Password-protected** using a hidden file in your home directory.
-- Cross-platform CLI support using `pwinput` (Windows, Linux, macOS, WSL).
-- Retro-style CLI display.
+* Log your **mood once per day**.
+* Update existing entries for today or any past date.
+* Optional notes for each mood entry.
+* View **full mood history**.
+* **Password-protected** using a hidden file in your home directory.
+* Cross-platform CLI support using `pwinput` (Windows, Linux, macOS, WSL).
+* Retro-style CLI display.
 
 ---
 
@@ -24,7 +27,7 @@ A simple command-line interface (CLI) tool to log and track your daily mood, wit
 
 ```bash
 pip install pwinput
-````
+```
 
 3. Run the program:
 
@@ -83,6 +86,3 @@ rm ~/.mood_pass
 * Backspace works while typing passwords.
 * Optional notes can be left empty.
 * Cross-platform asterisk password entry requires `pwinput`.
-
-```
-```
