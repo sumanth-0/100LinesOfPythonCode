@@ -66,8 +66,8 @@ def parse_repo_url(url: str) -> Optional[tuple]:
             return parts[-2], parts[-1]
     return None
 
-def main():
-    """Main function to handle CLI arguments and run the tool."""
+def parse_arguments() -> tuple:
+    """Parse command-line arguments and return owner and repo."""
     if len(sys.argv) < 2:
         print("Usage: python github_repo_info.py <owner/repo> or <url>")
         print("Example: python github_repo_info.py octocat/Hello-World")
@@ -88,6 +88,11 @@ def main():
         print("Error: Invalid format. Use owner/repo or URL")
         sys.exit(1)
     
+    return owner, repo
+
+def main():
+    """Main function to handle CLI arguments and run the tool."""
+    owner, repo = parse_arguments()
     gh_info = GitHubRepoInfo(owner, repo)
     success = gh_info.run()
     sys.exit(0 if success else 1)
