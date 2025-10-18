@@ -6,6 +6,7 @@ import urllib.request
 import urllib.error
 from typing import Dict, Optional
 
+
 class GitHubRepoInfo:
     """Fetches and displays GitHub repository information."""
     BASE_API_URL = "https://api.github.com/repos"
@@ -58,6 +59,7 @@ class GitHubRepoInfo:
             return True
         return False
 
+
 def parse_repo_url(url: str) -> Optional[tuple]:
     """Parse GitHub repository URL to extract owner and repo name."""
     if "github.com" in url:
@@ -65,6 +67,7 @@ def parse_repo_url(url: str) -> Optional[tuple]:
         if len(parts) >= 2:
             return parts[-2], parts[-1]
     return None
+
 
 def parse_arguments() -> tuple:
     """Parse command-line arguments and return owner and repo."""
@@ -87,12 +90,14 @@ def parse_arguments() -> tuple:
         sys.exit(1)
     return owner, repo
 
+
 def main():
     """Main function to handle CLI arguments and run the tool."""
     owner, repo = parse_arguments()
     gh_info = GitHubRepoInfo(owner, repo)
     success = gh_info.run()
     sys.exit(0 if success else 1)
+
 
 if __name__ == "__main__":
     main()
