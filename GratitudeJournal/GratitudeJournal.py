@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Gratitude Journal CLI - Track daily gratitude with timestamps."""
 
 import os, json

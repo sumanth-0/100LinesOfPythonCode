@@ -22,24 +22,24 @@ A lightweight, cross-platform CLI tool for daily gratitude journaling. Track wha
 ### Setup
 
 1. **Clone the repository** (or download the script)
-    
+
     ```bash
     git clone https://github.com/yourusername/gratitude-journal.git
     cd gratitude-journal
     ```
-    
+
 2. **Make the script executable** (macOS/Linux only)
-    
+
     ```bash
     chmod +x gratitude_journal.py
     ```
-    
+
 3. **Run the program**
-    
+
     ```bash
     python gratitude_journal.py
     ```
-    
+
 
 ## Usage
 
@@ -50,9 +50,7 @@ python gratitude_journal.py
 ```
 
 You'll see an interactive menu with the following options:
-
 ### Menu Options
-
 |Option|Description|
 |---|---|
 |**1. Add today's gratitude**|Write a new entry. Press Enter twice to finish.|
@@ -61,9 +59,7 @@ You'll see an interactive menu with the following options:
 |**4. Delete an entry**|Remove an entry by its number.|
 |**5. Export to markdown**|Save your journal as a formatted markdown file.|
 |**6. Exit**|Close the application.|
-
 ### Example Workflow
-
 ```
 🙏 Gratitude Journal
 ==================================================
@@ -74,12 +70,9 @@ You'll see an interactive menu with the following options:
 5. Export to markdown
 6. Exit
 ==================================================
-
 Enter your choice (1-6): 1
-
 📝 What are you grateful for today?
 (Enter multiple lines. Press Enter twice when done)
-
 I'm grateful for my health and the support of my friends.
 Today was a good day at work.
 
