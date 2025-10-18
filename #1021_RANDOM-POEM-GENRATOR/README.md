@@ -1,4 +1,4 @@
-# 🎭 Theme-Based Poem Generator
+# 🎭 Theme-Based Random Poem Generator
 
 ## Overview
 **Theme-Based Poem Generator** is a Python script that fetches poems from the [PoetryDB API](https://poetrydb.org/) based on a user-provided theme or keyword.  
