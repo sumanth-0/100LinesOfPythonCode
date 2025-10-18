@@ -1,4 +1,4 @@
-````markdown
+
 # Daily Mood Logger CLI
 
 A simple command-line interface (CLI) tool to log and track your daily mood, with optional notes and password protection.
