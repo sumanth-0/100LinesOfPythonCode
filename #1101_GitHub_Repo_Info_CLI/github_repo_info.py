@@ -72,9 +72,7 @@ def parse_arguments() -> tuple:
         print("Usage: python github_repo_info.py <owner/repo> or <url>")
         print("Example: python github_repo_info.py octocat/Hello-World")
         sys.exit(1)
-    
     arg = sys.argv[1]
-    
     if '/' in arg and "github.com" not in arg:
         owner, repo = arg.split('/', 1)
     elif "github.com" in arg:
@@ -87,7 +85,6 @@ def parse_arguments() -> tuple:
     else:
         print("Error: Invalid format. Use owner/repo or URL")
         sys.exit(1)
-    
     return owner, repo
 
 def main():
