@@ -1,0 +1,3 @@
+admin:Admin:admin123
+Awwab:Manager:12345
+aadil:Developer/Frontend:1234
