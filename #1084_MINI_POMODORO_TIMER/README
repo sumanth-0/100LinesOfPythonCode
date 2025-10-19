@@ -1,0 +1,31 @@
+Title: Mini Pomodoro Timer CLI
+
+Description: A simple command-line Pomodoro timer to boost productivity with customizable work and break sessions.
+
+Features:
+- 25-minute Pomodoro work sessions
+- 5-minute short breaks
+- 15-minute long breaks
+- Custom timer duration option (1-60 minutes)
+- Session counter to track completed Pomodoros
+- Real-time countdown display
+- Visual and audio notifications on completion
+- Clean terminal interface
+
+Usage:
+Run the script:
+  python3 pomodoro_timer.py
+
+Select from the menu:
+  1. Start Pomodoro (25 minutes)
+  2. Start Short Break (5 minutes)
+  3. Start Long Break (15 minutes)
+  4. Custom Timer
+  5. Exit
+
+The Pomodoro Technique:
+The Pomodoro Technique is a time management method that uses a timer to break work into intervals, traditionally 25 minutes in length, separated by short breaks.
+
+Author: anieoni0
+Date: October 2025
+Issue: #1084
