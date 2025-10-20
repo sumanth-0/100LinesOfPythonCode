@@ -1,0 +1,150 @@
+import pygame
+import random
+import sys
+from dataclasses import dataclass
+
+
+WINDOW_WIDTH = 600
+WINDOW_HEIGHT = 800
+GROUND_Y = WINDOW_HEIGHT - 60
+DOG_WIDTH = 90
+DOG_HEIGHT = 50
+BONE_WIDTH = 24
+BONE_HEIGHT = 12
+DOG_SPEED = 7
+GRAVITY = 0.4
+SPAWN_INTERVAL_MS = 700
+GAME_DURATION_SEC = 60
+
+
+@dataclass
+class Bone:
+    rect: pygame.Rect
+    vy: float
+
+
+def draw_dog(surface: pygame.Surface, rect: pygame.Rect) -> None:
+    body_color = (222, 184, 135)  # burlywood
+    ear_color = (139, 69, 19)  # saddlebrown
+    nose_color = (0, 0, 0)
+    collar_color = (255, 99, 71)  # tomato
+
+    # Body
+    pygame.draw.ellipse(surface, body_color, rect)
+    # Head
+    head_rect = pygame.Rect(rect.centerx - 25, rect.top - 20, 50, 40)
+    pygame.draw.ellipse(surface, body_color, head_rect)
+    # Ears
+    pygame.draw.polygon(surface, ear_color, [(head_rect.left + 5, head_rect.top + 5), (head_rect.left + 20, head_rect.top + 5), (head_rect.left + 10, head_rect.top - 10)])
+    pygame.draw.polygon(surface, ear_color, [(head_rect.right - 5, head_rect.top + 5), (head_rect.right - 20, head_rect.top + 5), (head_rect.right - 10, head_rect.top - 10)])
+    # Nose
+    pygame.draw.circle(surface, nose_color, (head_rect.right - 8, head_rect.centery), 4)
+    # Collar
+    pygame.draw.rect(surface, collar_color, (rect.centerx - 30, rect.top + 10, 60, 6), border_radius=3)
+
+
+def draw_bone(surface: pygame.Surface, rect: pygame.Rect) -> None:
+    bone_color = (245, 245, 245)
+    pygame.draw.rect(surface, bone_color, rect, border_radius=6)
+    knob_r = rect.height // 2
+    pygame.draw.circle(surface, bone_color, (rect.left, rect.top), knob_r)
+    pygame.draw.circle(surface, bone_color, (rect.left, rect.bottom), knob_r)
+    pygame.draw.circle(surface, bone_color, (rect.right, rect.top), knob_r)
+    pygame.draw.circle(surface, bone_color, (rect.right, rect.bottom), knob_r)
+
+
+def main() -> None:
+    pygame.init()
+    pygame.display.set_caption("Dog Bone Catcher")
+    screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+    clock = pygame.time.Clock()
+    font = pygame.font.SysFont(None, 36)
+
+    dog_rect = pygame.Rect((WINDOW_WIDTH - DOG_WIDTH) // 2, GROUND_Y - DOG_HEIGHT, DOG_WIDTH, DOG_HEIGHT)
+    bones: list[Bone] = []
+    score = 0
+
+    spawn_event = pygame.USEREVENT + 1
+    pygame.time.set_timer(spawn_event, SPAWN_INTERVAL_MS)
+    start_ticks = pygame.time.get_ticks()
+
+    running = True
+    while running:
+        dt_ms = clock.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit(0)
+            if event.type == spawn_event:
+                x = random.randint(20, WINDOW_WIDTH - BONE_WIDTH - 20)
+                bone_rect = pygame.Rect(x, -BONE_HEIGHT, BONE_WIDTH, BONE_HEIGHT)
+                bones.append(Bone(rect=bone_rect, vy=1.5))
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            dog_rect.x -= DOG_SPEED
+        if keys[pygame.K_RIGHT]:
+            dog_rect.x += DOG_SPEED
+        dog_rect.x = max(0, min(dog_rect.x, WINDOW_WIDTH - DOG_WIDTH))
+
+        # Update bones
+        for bone in bones:
+            bone.vy += GRAVITY * (dt_ms / 16.67)  # approximate per-frame gravity
+            bone.rect.y += int(bone.vy)
+
+        # Collision and off-screen removal
+        remaining: list[Bone] = []
+        for bone in bones:
+            if bone.rect.colliderect(dog_rect):
+                score += 1
+            elif bone.rect.top > WINDOW_HEIGHT:
+                # missed bone; continue (no immediate game over per spec)
+                pass
+            else:
+                remaining.append(bone)
+        bones = remaining
+
+        # Time handling
+        elapsed_sec = (pygame.time.get_ticks() - start_ticks) / 1000.0
+        time_left = max(0, int(GAME_DURATION_SEC - elapsed_sec))
+        if time_left <= 0:
+            running = False
+
+        # Draw
+        screen.fill((135, 206, 235))  # sky blue
+        pygame.draw.rect(screen, (60, 179, 113), (0, GROUND_Y, WINDOW_WIDTH, WINDOW_HEIGHT - GROUND_Y))  # ground
+        draw_dog(screen, dog_rect)
+        for bone in bones:
+            draw_bone(screen, bone.rect)
+
+        hud = font.render(f"Score: {score}   Time: {time_left}s", True, (0, 0, 0))
+        screen.blit(hud, (20, 20))
+
+        pygame.display.flip()
+
+    # Game over screen
+    screen.fill((25, 25, 25))
+    msg = font.render("Time's up!", True, (255, 255, 255))
+    score_msg = font.render(f"Final Score: {score}", True, (255, 255, 255))
+    tip = font.render("Press any key or close window", True, (200, 200, 200))
+    screen.blit(msg, (WINDOW_WIDTH // 2 - msg.get_width() // 2, WINDOW_HEIGHT // 2 - 80))
+    screen.blit(score_msg, (WINDOW_WIDTH // 2 - score_msg.get_width() // 2, WINDOW_HEIGHT // 2 - 30))
+    screen.blit(tip, (WINDOW_WIDTH // 2 - tip.get_width() // 2, WINDOW_HEIGHT // 2 + 30))
+    pygame.display.flip()
+
+    waiting = True
+    while waiting:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                waiting = False
+            if event.type == pygame.KEYDOWN:
+                waiting = False
+        clock.tick(30)
+
+    pygame.quit()
+
+
+if __name__ == "__main__":
+    main()
+
+
