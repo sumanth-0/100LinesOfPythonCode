@@ -70,7 +70,8 @@ Saved quotes are stored in `saved_quotes.json` in the project directory.
 
 ## Screenshots
 
-*(Add terminal screenshots here showing quote display and saved quotes view)*
+### Viewing saved quotes
+![alt text](image.png)
 
 ---
 
