@@ -1,10 +1,7 @@
 import requests
 
-url = "https://saurav.tech/NewsAPI/top-headlines/category/technology/in.json"
-everything_api = "<BASE_URL>/everything/<source_id>.json"
-
-# Fetch response.
-response = requests.get(url)
+# Fetch response (tech news only, for now).
+response = requests.get("https://saurav.tech/NewsAPI/top-headlines/category/technology/in.json")
 
 # Check for success.
 if response.status_code == 200:
