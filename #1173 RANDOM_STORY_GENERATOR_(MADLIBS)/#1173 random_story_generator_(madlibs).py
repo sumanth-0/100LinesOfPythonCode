@@ -51,7 +51,8 @@ def mad_lib_generator():
     # Get user input.
     answers = []
     for match in matches:
-        answers.append(input(f"Enter a {match}: "))
+        user_input = input(f"Enter a {match}: ").strip() or str(match)
+        answers.append(user_input)
 
     # Helper function to substitute sequentially.
     def replacer(match):
