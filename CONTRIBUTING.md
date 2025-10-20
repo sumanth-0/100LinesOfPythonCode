@@ -4,7 +4,7 @@ We welcome contributions from developers of all skill levels! Whether you're sub
 
 If you are a first-time contributor, see [this guide](https://opensource.guide/how-to-contribute/) on how to contribute to open source.
 
-Please follow [Code of Conduct](/CODE_OF_CONDUCT.MD) in all your interactions with the project.
+Please follow the [Code of Conduct](/CODE_OF_CONDUCT.MD) in all your interactions with the project.
 
 # Code Requirements
 
@@ -12,7 +12,7 @@ Ensure your code snippet follows these requirements:
 
 - It is under 100 lines of code.
 - It is well-commented and easy to understand.
-- It provides something interesting - this could be a unique algorithm, a cool use case, or a clever trick in Python.
+- It provides something interesting—this could be a unique algorithm, a cool use case, or a clever trick in Python.
 - It follows Python’s [PEP 8 style guide](https://peps.python.org/pep-0008/) to keep the code clean and readable.
 
 # How to Contribute
