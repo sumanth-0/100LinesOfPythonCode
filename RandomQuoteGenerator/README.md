@@ -40,7 +40,7 @@ cd random-quote-generator
 pip install -r requirements.txt
 ```
 
-> Or install manually:
+Or install manually:
 
 ```bash
 pip install requests rich pyfiglet
