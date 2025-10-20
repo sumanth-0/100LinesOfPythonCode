@@ -70,6 +70,8 @@ Saved quotes are stored in `saved_quotes.json` in the project directory.
 
 ## Screenshots
 
+### Default View
+![alt text](image-1.png)
 ### Viewing saved quotes
 ![alt text](image.png)
 
