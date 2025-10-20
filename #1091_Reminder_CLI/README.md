@@ -1,66 +1,45 @@
-#  Quick Reminder Script
+# Reminder CLI
 
-A simple **Python command-line reminder tool** that waits for a specified amount of time before displaying a reminder message.
-Ideal for quick breaks, short tasks, or time-based alerts during work or study sessions.
+A simple command-line Python program to set reminders based on **minutes, hours, days, or a specific day and time**.  
 
----
+## Features
 
-##  Features
+- Supports fractional times, e.g., `in 0.5 minutes` or `in 1.25 hours`.  
+- Allows reminders for specific days and times, e.g., `Tuesday at 9pm`.  
+- Automatically calculates the time until the reminder.  
+- Runs entirely in the terminal — no GUI required.  
 
-*  Set a **custom reminder message**
-*  Specify the **delay time (in seconds)**
-*  Displays a **reminder notification** after the wait time
-*  Uses built-in Python `time` module (no external dependencies)
+## How to Use
 
----
+1. Run the script:  
+   ```bash
+   python main.py
 
-## How It Works
+2.	Enter what you want to be reminded of.
 
-1. The user inputs a reminder message.
-2. The user enters the number of seconds to wait.
-3. The program pauses using `time.sleep()`.
-4. After the delay, it prints the reminder message and a motivational message.
+3.	Enter when you want to be reminded:
+- Minutes: in 5 minutes
+- Hours: in 1.5 hours
+- Days: in 2 days
+- Day and time: Tuesday at 9pm
 
----
+4.	Wait for the reminder — the program will print your message when the time is up.
 
+## Notes
+- If using a day and time without specifying AM/PM, the program will ask you to clarify.
+- The program sleeps until the reminder triggers, so it must remain running.
 
----
+## Example
+What would you like to be reminded of? Feed the cat
+When would you like to be reminded? in 0.5 minutes
+Alright, I’ll remind you about 'Feed the cat' in 0.5 minutes.
+*waits 30 seconds*
+Hey! Reminder: Feed the cat
 
-##  Usage
+## Requirements
 
-### **Run the Script**
-
-```bash
-python reminder.py
-```
-
-### **Example Run**
-
-```
-Please tell me what to remind you: Take a break!
-Enter wait time in seconds (e.g., 5): 5
-⏰ Reminder set for 'Take a break!'. Waiting for 5 seconds...
-
-*********************************
-🚨 REMINDER: Take a break!
-*********************************
-
-Hey get back to your reminded work !!!
-```
-
----
-
-##  Notes
-
-* The script **blocks execution** during the wait (no multitasking).
-* To make it **non-blocking**, you could use threading or async techniques.
-* Works on any OS with Python 3 installed.
-
----
-
-##  Requirements
-
-* Python 3.x
-* No additional libraries required.
-
----
+- **Python 3.6+**  
+- Standard library modules (already included with Python):
+  - `time`
+  - `re`
+  - `datetime`
