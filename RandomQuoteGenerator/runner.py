@@ -71,29 +71,32 @@ def view_saved_quotes():
             padding=(1, 2),
             box=DOUBLE,
         )
+        console.print(i,q)
         console.print(panel)
 
 def main():
     display_heading("Random Quote Generator")
+    current_quote, current_author = fetch_quote()
+    display_quote(current_quote, current_author)
     while True:
-        quote, author = fetch_quote()
-        if quote:
-            display_quote(quote, author)
 
-            action = Prompt.ask(
-                "Options: [bold]save[/bold], [bold]next[/bold], [bold]view[/bold], [bold]exit[/bold]",
-                choices=["save", "next", "view", "exit"],
-                default="next"
-            )
+        action = Prompt.ask(
+            "Options: [bold]save[/bold], [bold]next[/bold], [bold]view[/bold], [bold]exit[/bold]",
+            choices=["save", "next", "view", "exit"],
+            default="next"
+        )
 
-            if action == "save":
-                save_quote(quote, author)
-            elif action == "view":
-                view_saved_quotes()
-            elif action == "exit":
-                console.print("\n[bold]Goodbye![/bold]")
-                break
-        else:
+        if action == "save":
+            save_quote(current_quote, current_author)
+        elif action == "view":
+            view_saved_quotes()
+            # Do NOT redisplay current quote; just continue loop
+            continue
+        elif action == "next":
+            current_quote, current_author = fetch_quote()
+            display_quote(current_quote, current_author)
+        elif action == "exit":
+            console.print("\n[bold]Goodbye![/bold]")
             break
 
 if __name__ == "__main__":
