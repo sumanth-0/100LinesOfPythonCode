@@ -14,4 +14,4 @@ A simple Python script that can generate a **random fun superhero name** for you
 2. Run the Python script:
 
 ```bash
-python superhero_name_generator.py
+python SuperHeroGenerator.py
