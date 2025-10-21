@@ -8,8 +8,8 @@ English, French, German, Spanish, Italian, Portuguese, Dutch, Swedish, Turkish, 
 2. Predicts language by comparing letter frequencies of the input with predefined language profiles.
 
 ## Usage:
-1. Run `main.py`.
+1. Run `main.py`.hjb
 2. Enter your text (longer text generally improves accuracy).
+*(You can use the sample text provided in `sample.txt`)*
 3. The script outputs the most likely language of the input text.
-(*You can use the sample text provided in `sample.txt`)*
 
