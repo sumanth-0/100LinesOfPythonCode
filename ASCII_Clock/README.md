@@ -1,88 +1,38 @@
-# ASCII Digital Clock
+ASCII Digital Clock
 
-A live-updating digital clock made entirely from ASCII characters in Python with a beautifully bordered display.
+A simple Python terminal program that displays the current time as large ASCII numbers with a decorative frame. The clock updates every second and can be stopped gracefully with Ctrl+C.
 
-## Features
+Features:
 
-- **Real-time updates**: The clock updates every second automatically
-- **ASCII art digits**: Beautiful block-style ASCII representations of numbers 0-9
-- **Dynamic sizing**: The border box automatically adjusts to fit the time display
-- **Perfect alignment**: All digits are consistently sized for proper visual alignment
-- **Compact design**: Optimized spacing for clean, professional appearance
-- **Cross-platform**: Works on Windows, macOS, and Linux
-- **Easy to use**: Simply run the script and enjoy!
+1) Large ASCII numbers for hours, minutes, and seconds
+2) Decorative border around the clock
+3) Updates every second
+4) Graceful exit message when stopped
+5) Cross-platform (works on Windows, macOS, Linux)
 
-## Files
+Screenshot:
+ 000    222           222   55555          000    000
+0   0  2   2    :    2   2  5        :    0   0  0   0
+0   0     2             2   5555          0   0  0   0
+0   0    2      :      2        5    :    0   0  0   0
+ 000   22222         22222  5555           000    000
 
-- `ascii_clock.py` - Main clock application with live updates
-- `test_clock.py` - Test script to verify functionality without live updates
-- `README.md` - This documentation file
+Installation:
+No external libraries required. Make sure you have Python 3.x installed.
 
-## How to Use
-
-### Run the Live Clock
-```bash
+git clone <repository_url>
+cd ascii-clock
 python ascii_clock.py
-```
 
-The clock will start immediately and display the current time in ASCII format within a decorative border. It updates every second automatically.
+Usage:
 
-### Stop the Clock
-Press `Ctrl+C` to stop the clock and return to the command prompt.
+Run the script:
+python ascii_clock.py
 
-### Test the Clock
-```bash
-python test_clock.py
-```
+The clock will start in the terminal.
+Stop the clock anytime by pressing Ctrl+C.
 
-This will display a single snapshot of the current time in ASCII format without the live updates or border.
+Customization
 
-## Example Output
-
-```
-╔═══════════════════════════════════════════════════════════════════════════════════╗
-║                                    ASCII CLOCK                                    ║
-╠═══════════════════════════════════════════════════════════════════════════════════╣
-║                                                                                   ║
-║            ██████   ██████       ██████   ██████       ██████  ██    ██           ║
-║                ██       ██  ██        ██ ██    ██  ██  ██    ██ ██    ██          ║
-║            ██████   ██████       ██████   ██████      ██    ██ ████████           ║
-║          ██             ██  ██  ██       ██    ██  ██  ██    ██       ██          ║
-║           ████████  ██████      ████████  ██████       ██████        ██           ║
-║                                                                                   ║
-╚═══════════════════════════════════════════════════════════════════════════════════╝
-
-Press Ctrl+C to stop the clock
-```
-
-## Requirements
-
-- Python 3.6 or higher
-- No external dependencies required (uses only built-in modules)
-
-## How It Works
-
-1. **ASCII Digit Definitions**: Each digit (0-9) is represented as a 5-line ASCII art pattern using block characters (█), all consistently sized to 8 characters wide
-2. **Time Formatting**: Uses Python's `datetime` module to get the current time in HH:MM:SS format
-3. **Dynamic Box Sizing**: Calculates the required width based on the actual time display and creates a properly sized border
-4. **Perfect Centering**: Each line of the time display is individually centered within the border box
-5. **Compact Spacing**: Uses single-space separation between digits and a compact colon design for optimal fit
-6. **Real-time Updates**: Uses a simple `while` loop with `time.sleep(1)` to update every second
-
-## Technical Improvements
-
-- **Consistent Width**: All ASCII digit patterns are exactly 8 characters wide for perfect alignment
-- **Dynamic Layout**: The border automatically adjusts to accommodate different time displays
-- **Optimized Spacing**: Reduced spacing between characters for a more compact, professional look
-- **Clean Borders**: Uses Unicode box-drawing characters for a polished appearance
-
-## Customization
-
-You can easily customize the clock by:
-- Modifying the ASCII digit patterns in the `digits` dictionary (ensure they remain 8 characters wide)
-- Changing the display format (add AM/PM, change to 12-hour format)
-- Adjusting the update frequency by changing the sleep time
-- Adding colors using ANSI escape codes (on supported terminals)
-- Modifying the border characters or adding decorative elements
-
-Enjoy your ASCII digital clock! 🕐✨
+1) Change ASCII digits in ASCII_DIGITS dictionary.
+2) Modify frame style or spacing in the code.
