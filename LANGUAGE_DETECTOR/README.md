@@ -13,3 +13,9 @@ English, French, German, Spanish, Italian, Portuguese, Dutch, Swedish, Turkish, 
 *(You can use the sample text provided in `sample.txt`)*
 3. The script outputs the most likely language of the input text.
 
+## Requirements:
+This project requires the `numpy` library. You can install it using pip:
+
+```bash
+pip install numpy
+```

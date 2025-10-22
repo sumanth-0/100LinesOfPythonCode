@@ -1,7 +1,9 @@
 import numpy as np
 
+# Map numeric indices to language names
 langs = { 0: "English",  1: "French",  2: "German",  3: "Spanish",  4: "Italian",  5: "Portuguese",  6: "Dutch", 7: "Swedish",  8: "Turkish",  9: "Polish" }
 
+# Predefined letter frequency profiles for each language
 LETTER_FREQUENCIES = {
     "English": { 'a': 8.2, 'b': 1.5, 'c': 2.8, 'd': 4.3, 'e': 13.0, 'f': 2.2, 'g': 2.0, 'h': 6.1,
                  'i': 7.0, 'j': 0.15, 'k': 0.8, 'l': 4.0, 'm': 2.4, 'n': 6.7, 'o': 7.5, 'p': 1.9,
@@ -60,15 +62,16 @@ chars = [
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
 ]
 
+# Dictionary to store count of the characters
 counts = {}
 
+# Dictionary to store frequency(%) of each character in text
 percentage = {
     'a':0, 'b':0, 'c':0, 'd':0, 'e':0, 'f':0, 'g':0, 'h':0, 'i':0, 'j':0, 'k':0, 'l':0, 'm':0,
     'n':0, 'o':0, 'p':0, 'q':0, 'r':0, 's':0, 't':0, 'u':0, 'v':0, 'w':0, 'x':0, 'y':0, 'z':0
 }
 
-predict = {}
-
+# Clean the input text (make lowercase, remove digits, punctuation)
 text = input("Enter your text: ")
 text = text.lower()
 text = text.replace('!', '').replace(',', '').replace('?', '').replace(' ', '').replace('/', '').replace('.', '').replace('\'', '').replace('\"', "")
@@ -89,6 +92,7 @@ if length < 30:
 for char in chars:
     percentage[char] = counts[char] * 100 / length
 
+# Calculate total distance of text from each language
 distances = []
 
 for lang in langs.values():
@@ -96,9 +100,11 @@ for lang in langs.values():
     for char in chars:
         expected = LETTER_FREQUENCIES[lang][char]
         actual = percentage[char]
-        total_diff += abs(expected - actual)
+        total_diff += abs(expected - actual)    # Sums the absolute difference of each character's 
+                                                # frequency from its predefined language profile
     distances.append(total_diff)
 
+# Get the language with the least distance from input text
 pred_lang_index = np.argmin(distances)
 print("Your language is likely:", langs[pred_lang_index])
 
