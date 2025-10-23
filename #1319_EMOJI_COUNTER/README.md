@@ -1,6 +1,3 @@
-Here’s your `README.md` updated with emojis to make it more visually appealing and aligned with your project theme:
-
-````markdown
 # 😃 Emoji Counter 🎉
 
 A simple Python program to **count emojis** in a text file, log file, or user-pasted text using a Tkinter GUI for file selection 🖱️.
@@ -25,7 +22,6 @@ A simple Python program to **count emojis** in a text file, log file, or user-pa
 * Python packages:
   ```bash
   pip install emoji tk
-````
 
 * Works on Windows, macOS, and Linux  (Tkinter must be installed).
 
