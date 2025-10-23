@@ -34,3 +34,5 @@ This Code of Conduct applies within project spaces and in public spaces when an 
 # Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at sumanthgowdach123@gmail.com. All complaints will be reviewed and investigated and will result in a response deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+
+<!-- Last updated: October 2024 -->
