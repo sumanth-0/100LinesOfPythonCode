@@ -1,0 +1,21 @@
+
+This advanced todo application includes:
+
+**Key Features:**
+- SQLite database for persistent storage
+- Priority system (Low, Medium, High)
+- Task categories
+- Due dates
+- Search functionality
+- Statistics
+- Colorful interface
+- Multiple view options
+
+**Technical Features:**
+- Object-oriented design
+- Database abstraction
+- Error handling
+- Input validation
+- Clean code structure
+
+To run: `pip install colorama` then `python todo.py`
