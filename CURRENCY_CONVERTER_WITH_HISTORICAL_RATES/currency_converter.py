@@ -1,5 +1,4 @@
 import requests
-import datetime
 
 class CurrencyConverter:
     def __init__(self):
