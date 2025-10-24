@@ -1,0 +1,31 @@
+URL Check Report - 2025-10-22 02:06:50
+================================================================================
+
+Total URLs checked: 4
+Online: 2
+Broken/Timeout: 2
+Invalid/Error: 0
+
+================================================================================
+
+
+BROKEN URLs (2):
+--------------------------------------------------------------------------------
+URL: https://broken-url-example.com
+Message: Connection failed
+
+URL: https://example.com/404
+Status Code: 404
+Message: HTTP error 404
+
+
+ONLINE URLs (2):
+--------------------------------------------------------------------------------
+URL: https://www.google.com
+Status Code: 200
+Message: URL is accessible
+
+URL: https://www.github.com
+Status Code: 200
+Message: URL is accessible
+
