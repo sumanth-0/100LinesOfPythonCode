@@ -26,7 +26,7 @@ pip install pillow
 ## Example
 
 Original Image:  
-![Original](images/image.jpg)
+![Original](image.jpg)
 
 Watermarked Image:  
-![Watermarked](images/watermarked_image.jpg)
+![Watermarked](watermarked_image.jpg)
