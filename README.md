@@ -33,7 +33,7 @@ Welcome to our project! We're excited to have you here. Below are some guideline
 
 ## 🛠️ Our Contributors
 <a href="https://github.com/sumanth-0/100LinesOfPythonCode/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=sumanth-0/100LinesOfPythonCode&max=91" alt="Contributors" />
+  <img src="https://contrib.rocks/image?repo=sumanth-0/100LinesOfPythonCode&max=92" alt="Contributors" />
 </a>
 
 ---
