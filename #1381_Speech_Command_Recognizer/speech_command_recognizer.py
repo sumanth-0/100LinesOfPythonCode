@@ -1,60 +1,86 @@
-"""
-Speech Command Recognizer (#1381)
-Detects simple voice commands: 'start', 'stop', 'exit'.
-Responds with text-to-speech and console messages.
-"""
+#!/usr/bin/env python3
+
 
 import speech_recognition as sr
-import pyttsx3
 
-# Initialize recognizer and text-to-speech engine
-recognizer = sr.Recognizer()
-engine = pyttsx3.init()
+import sys, time
 
-def speak(text):
-    """Convert text to speech."""
-    engine.say(text)
-    engine.runAndWait()
 
-def listen():
-    """Listen to microphone and return recognized text."""
-    with sr.Microphone() as source:
-        print("\nListening for command...")
-        recognizer.adjust_for_ambient_noise(source, duration=0.5)
-        audio = recognizer.listen(source)
-        try:
-            text = recognizer.recognize_google(audio).lower()
-            print(f"You said: {text}")
-            return text
-        except sr.UnknownValueError:
-            print("Could not understand audio.")
-            return ""
-        except sr.RequestError:
-            print("Speech Recognition service unavailable.")
-            return ""
-
-def main():
-    speak("Voice command recognizer activated. Say start, stop, or exit.")
-    print("Say 'start', 'stop', or 'exit' to control the program.")
+class SpeechCommandRecognizer:
+    """Recognizes and processes basic voice commands"""
     
-    while True:
-        command = listen()
+    def __init__(self):
+        self.recognizer = sr.Recognizer()
+        self.microphone = sr.Microphone()
+        self.is_running = False
+        self.is_paused = False
+        self.commands = {
+            'start': lambda: self.set_state(True, False, "START", "🚀 System started!"),
+            'stop': lambda: self.set_state(False, False, "STOP", "🛑 System stopped!"),
+            'pause': lambda: self.set_state(self.is_running, True, "PAUSE", "⏸️  System paused!"),
+            'resume': lambda: self.set_state(self.is_running, False, "RESUME", "▶️  System resumed!"),
+            'exit': self.exit,
+            'quit': self.exit,
+            'help': self.help
+        }
+        print("🎤 Calibrating microphone for ambient noise...")
+        with self.microphone as source:
+            self.recognizer.adjust_for_ambient_noise(source, duration=1)
+        print("✓ Calibration complete!")
+    
+    def listen(self):
+        try:
+            with self.microphone as source:
+                print("\n🎧 Listening... (speak a command)")
+                audio = self.recognizer.listen(source, timeout=5, phrase_time_limit=3)
+            print("🔄 Processing...")
+            return self.recognizer.recognize_google(audio).lower()
+        except sr.WaitTimeoutError:
+            print("⏱️  No speech detected (timeout)"); return None
+        except sr.UnknownValueError:
+            print("❌ Could not understand audio"); return None
+        except sr.RequestError as e:
+            print(f"❌ API error: {e}"); return None
+        except Exception as e:
+            print(f"❌ Error: {e}"); return None
+    
+    def parse_command(self, text):
+        if not text: return None
+        for cmd in self.commands:
+            if cmd in text: return cmd
+        return None
+    
+    def set_state(self, running, paused, label, msg):
+        print(f"✅ {label} command received!")
+        self.is_running, self.is_paused = running, paused
+        print(msg)
+    def exit(self):
+        print("✅ EXIT command received!\n👋 Goodbye!"); sys.exit(0)
+    def help(self):
+        print("\n📋 Commands: start, stop, pause, resume, exit, quit, help")
+    def get_status(self):
+        return "🟢 Running" if self.is_running and not self.is_paused else ("🟡 Paused" if self.is_paused else "⚪ Stopped")
+    
+    def run(self):
+        print("\n🎤 Speech Command Recognizer\nSpeak: start, stop, pause, resume, exit, help\nPress Ctrl+C to quit\n")
+        try:
+            while True:
+                print(f"Status: {self.get_status()}")
+                text = self.listen()
+                if text:
+                    print(f'💬 You said: "{text}"')
+                    cmd = self.parse_command(text)
+                    if cmd:
+                        print(f"🎯 Command: {cmd.upper()}"); self.commands[cmd]()
+                    else:
+                        print("❓ No valid command found. Say 'help'.")
+                time.sleep(0.5)
+        except KeyboardInterrupt:
+            print("\n⚠️  Interrupted by user\n👋 Goodbye!")
 
-        if "start" in command:
-            speak("Starting process.")
-            print("✅ Process started!")
-
-        elif "stop" in command:
-            speak("Stopping process.")
-            print("⏹️ Process stopped!")
-
-        elif "exit" in command:
-            speak("Exiting. Goodbye!")
-            print("👋 Program exited.")
-            break
-
-        else:
-            print("No valid command detected. Try again.")
 
 if __name__ == "__main__":
-    main()
+    try:
+        SpeechCommandRecognizer().run()
+    except Exception as e:
+        print(f"❌ Fatal error: {e}"); sys.exit(1)
