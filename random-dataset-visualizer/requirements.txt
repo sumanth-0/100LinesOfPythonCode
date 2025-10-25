@@ -1,0 +1,8 @@
+# requirements.txt
+# Dependencies for the Random Dataset Visualizer script.
+
+# Core data manipulation library
+pandas
+
+# Core plotting library
+matplotlib
