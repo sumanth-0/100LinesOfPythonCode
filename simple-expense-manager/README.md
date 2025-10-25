@@ -1,15 +1,20 @@
 # Simple Expense Manager
 
-A command-line tool to track and manage daily expenses with category-wise summaries.
+A lightweight CLI tool for tracking and analyzing personal expenses with category-wise summaries, statistics, and data export capabilities.
 
 ## Features
 
 - Add daily expenses with categories and descriptions
 - View expense summaries by category
-- Automatic date tracking for each expense
+- Export data to CSV format (automatic .csv extension handling)
+- View expense statistics including:
+  - Average daily spending
+  - Most expensive category
+  - Total expenses
+- Automatic date tracking
 - Data persistence using JSON storage
 - Pre-defined expense categories
-- Total expense calculation
+- Under 100 lines of well-documented code
 
 ## Categories
 
@@ -28,47 +33,53 @@ python expense_manager.py
 
 2. Choose from the following options:
    - Add Expense (1): Enter amount, category, and description
-   - View Summary (2): See expenses by category and total
-   - Exit (3): Close the application
+   - View Summary (2): See expenses by category
+   - Export to CSV (3): Save expenses to a CSV file
+   - View Stats (4): See spending statistics
+   - Exit (5): Close the application
 
-## Example
+## Examples
 
+### Adding an Expense
 ```
-1. Add Expense
-2. View Summary
-3. Exit
-Select an option (1-3): 1
-
 Categories: ['Food', 'Transport', 'Bills', 'Entertainment', 'Other']
-Enter amount: 25.50
-Enter category: Food
-Enter description: Lunch at cafe
+Amount: 25.50
+Category: Food
+Description: Lunch at cafe
 Expense added successfully!
+```
+
+### Viewing Statistics
+```
+Statistics:
+Avg/day: $27.83
+Most spent: Food
+Total: $195.50
+```
+
+### Exporting Data
+```
+Export filename (with or without .csv): march_expenses
+Export complete! Available in the current directory.
 ```
 
 ## Data Storage
 
-All expenses are stored in `expenses.json` in the same directory. The file is automatically created when you add your first expense.
+- Expenses are stored in `expenses.json` (automatic creation)
+- Export to CSV available for spreadsheet analysis
+- CSV files include: date, amount, category, and description
 
 ## File Structure
 
 ```
 simple-expense-manager/
-├── expense_manager.py
-├── expenses.json
-└── README.md
+├── expense_manager.py  # Main program with docstrings
+├── expenses.json      # Data storage
+└── README.md         # Documentation
 ```
 
 ## Requirements
 
 - Python 3.x
 - No additional dependencies required
-
-## Extending the Project
-
-Future improvements could include:
-- Date range filtering
-- Expense editing and deletion
-- Monthly budgets
-- Data visualization
-- Export to CSV functionality
+- Works on all major operating systems
