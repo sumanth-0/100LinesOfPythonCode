@@ -41,6 +41,7 @@ def getHabit():
             n = int(input("Enter Habit Number (1–10): "))
             if 1 <= n <= 10:
                 return n
+            
             else:
                 print("Invalid. Enter between 1–10.")
         except ValueError:
