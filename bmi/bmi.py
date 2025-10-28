@@ -1,38 +1,33 @@
-import sys  # Add this if you're using exit()
+import csv
+import datetime
+import os
 
-measurement_type = input("Input your measurement type (Imperial / Metric) >> ")
+file_name = 'bmi_log.csv'
+headers = ['date', 'height_m', 'weight_kg', 'bmi']
+
+file_exists = os.path.exists(file_name)
 
 try:
-    if measurement_type == "Metric":
-        weight = float(input("Input your weight (In Kilogram) >> "))
-        height = float(input("Input your height (in Meter) >> "))
-    
-    elif measurement_type == "Imperial":
-        weight = float(input("Input your weight (In Pounds) >> "))
-        height = float(input("Input your height (in Inches) >> "))
-        
-        weight = weight * 0.453592  # Convert pounds to kilograms
-        height = height * 0.0254    # Convert inches to meters
-    
-    else:
-        print("Invalid measurement type!")
-        sys.exit()  # Use sys.exit() to exit the program
+    height = float(input("Enter your height in meters (e.g., 1.75): "))
+    weight = float(input("Enter your weight in kg (e.g., 70): "))
 
-    bmi = weight / (height ** 2)  # Calculate BMI
-    
-    # Determine BMI category
-    if bmi < 18.5:
-        category = "Underweight"
-    elif 18.5 <= bmi < 24.9:
-        category = "Normal weight"
-    elif 25 <= bmi < 29.9:
-        category = "Overweight"
+    if height <= 0 or weight <= 0:
+        print("Error: Height and weight must be positive numbers.")
     else:
-        category = "Obese"
+        bmi = weight / (height ** 2)
+        today = datetime.date.today()
+        data_row = [today, height, weight, round(bmi, 2)]
 
-    # Output BMI and category
-    print(f"Your BMI is {bmi:.2f}")
-    print(f"You are classified as: {category}")
+        with open(file_name, 'a', newline='') as f:
+            writer = csv.writer(f)
+            
+            if not file_exists:
+                writer.writerow(file_name)
+            
+            writer.writerow(data_row)
+
+        print(f"Your BMI is: {bmi:.2f}")
+        print(f"Your entry has been saved to {file_name}")
 
 except ValueError:
-    print("Invalid input! Please enter numeric values for weight and height.")
+    print("\nError: Invalid input. Please enter numbers only.")
