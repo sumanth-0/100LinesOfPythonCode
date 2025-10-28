@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README</title>
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: 2em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 85%;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        blockquote {
+            border-left: 4px solid #dfe2e5;
+            padding-left: 16px;
+            color: #6a737d;
+            margin-left: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 16px 0;
+        }
+        th, td {
+            border: 1px solid #dfe2e5;
+            padding: 8px 12px;
+        }
+        th {
+            background-color: #f6f8fa;
+            font-weight: 600;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<h1>Markdown to HTML Converter</h1>
+<p>A Python utility that converts Markdown files into beautifully styled HTML pages. Perfect for generating documentation, README displays, blog posts, and more.</p>
+<h2>Features</h2>
+<ul>
+<li>📝 Convert Markdown to clean, responsive HTML</li>
+<li>🎨 GitHub-inspired styling out of the box</li>
+<li>🔧 Support for extended Markdown features (tables, code blocks, footnotes)</li>
+<li>💻 Syntax highlighting for code blocks</li>
+<li>📱 Mobile-responsive design</li>
+<li>⚡ Simple command-line interface</li>
+<li>🎯 Customizable page titles</li>
+<li>📦 Self-contained HTML output (CSS included)</li>
+</ul>
+<h2>Requirements</h2>
+<ul>
+<li>Python 3.6+</li>
+<li><code>markdown</code> library</li>
+</ul>
+<h2>Installation</h2>
+<ol>
+<li>
+<p>Clone or download this repository</p>
+</li>
+<li>
+<p>Install required dependencies:</p>
+</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>markdown
+</code></pre></div>
+
+<h2>Usage</h2>
+<h3>Basic Usage</h3>
+<p>Convert a Markdown file to HTML:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>md_to_html.py<span class="w"> </span>input.md
+</code></pre></div>
+
+<p>This creates <code>input.html</code> in the same directory.</p>
+<h3>Specify Output File</h3>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>md_to_html.py<span class="w"> </span>README.md<span class="w"> </span>index.html
+</code></pre></div>
+
+<h3>Custom Page Title</h3>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>md_to_html.py<span class="w"> </span>document.md<span class="w"> </span>output.html<span class="w"> </span><span class="s2">&quot;My Documentation&quot;</span>
+</code></pre></div>
+
+<h3>As a Python Module</h3>
+<p>You can also use it programmatically in your Python code:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">md_to_html</span> <span class="kn">import</span> <span class="n">convert_markdown_to_html</span>
+
+<span class="c1"># Basic conversion</span>
+<span class="n">convert_markdown_to_html</span><span class="p">(</span><span class="s1">&#39;input.md&#39;</span><span class="p">)</span>
+
+<span class="c1"># With custom output and title</span>
+<span class="n">convert_markdown_to_html</span><span class="p">(</span><span class="s1">&#39;input.md&#39;</span><span class="p">,</span> <span class="s1">&#39;output.html&#39;</span><span class="p">,</span> <span class="s1">&#39;My Custom Title&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>Command-Line Options</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">python</span><span class="w"> </span><span class="n">md_to_html</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="o">&lt;</span><span class="k">input</span><span class="p">.</span><span class="n">md</span><span class="o">&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">output.html</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">title</span><span class="o">]</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>input.md</code></td>
+<td>Input Markdown file</td>
+<td>Yes</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>output.html</code></td>
+<td>Output HTML file</td>
+<td>No</td>
+<td>Same name as input with .html extension</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>HTML page title</td>
+<td>No</td>
+<td>Input filename without extension</td>
+</tr>
+</tbody>
+</table>
+<h2>Supported Markdown Features</h2>
+<h3>Basic Formatting</h3>
+<ul>
+<li><strong>Bold</strong> and <em>italic</em> text</li>
+<li>Headers (H1-H6)</li>
+<li>Links and images</li>
+<li>Ordered and unordered lists</li>
+<li>Blockquotes</li>
+<li>Horizontal rules</li>
+</ul>
+<h3>Extended Features</h3>
+<ul>
+<li>Tables with proper styling</li>
+<li>Fenced code blocks with language specification</li>
+<li>Inline code formatting</li>
+<li>Footnotes</li>
+<li>Definition lists</li>
+<li>Automatic link detection</li>
+</ul>
+<h3>Code Highlighting</h3>
+<p>The converter supports syntax highlighting for code blocks:</p>
+<div class="codehilite"><pre><span></span><code><span class="sb">```python</span>
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+<span class="sb">```</span>
+</code></pre></div>
+
+<p>Supported languages include Python, JavaScript, Java, C, C++, HTML, CSS, and many more.</p>
+<h2>Output</h2>
+<h3>HTML Structure</h3>
+<p>The generated HTML includes:
+- Proper HTML5 doctype and structure
+- UTF-8 character encoding
+- Responsive viewport meta tag
+- Embedded CSS styling
+- Clean, semantic HTML markup</p>
+<h3>Styling</h3>
+<p>The default styling includes:
+- <strong>Maximum width</strong>: 800px for optimal readability
+- <strong>Typography</strong>: System font stack for native look
+- <strong>Code blocks</strong>: Syntax highlighting with GitHub-style background
+- <strong>Tables</strong>: Bordered cells with hover effects
+- <strong>Links</strong>: Styled with hover effects
+- <strong>Headers</strong>: Proper hierarchy with bottom borders
+- <strong>Blockquotes</strong>: Left border accent
+- <strong>Responsive</strong>: Mobile-friendly design</p>
+<h2>Example</h2>
+<h3>Input Markdown (<code>example.md</code>):</h3>
+<div class="codehilite"><pre><span></span><code><span class="gh"># My Project</span>
+
+This is a <span class="gs">**great**</span> project that does amazing things.
+
+<span class="gu">## Features</span>
+
+<span class="k">-</span><span class="w"> </span>Fast performance
+<span class="k">-</span><span class="w"> </span>Easy to use
+<span class="k">-</span><span class="w"> </span>Well documented
+
+<span class="gu">## Code Example</span>
+
+```python
+print(&quot;Hello, World!&quot;)
+</code></pre></div>
+
+<h2>Installation</h2>
+<p>Run this command:</p>
+<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>myproject
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="gu">##</span># Command:
+
+```bash
+python md_to_html.py example.md
+</code></pre></div>
+
+<h3>Output (<code>example.html</code>):</h3>
+<p>A beautifully styled HTML page with proper formatting, code highlighting, and responsive design.</p>
+<h2>Use Cases</h2>
+<h3>Documentation</h3>
+<p>Convert README.md files to HTML for hosting or sharing:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>md_to_html.py<span class="w"> </span>README.md<span class="w"> </span>docs.html<span class="w"> </span><span class="s2">&quot;Project Documentation&quot;</span>
+</code></pre></div>
+
+<h3>Blog Posts</h3>
+<p>Transform Markdown blog posts to HTML:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>md_to_html.py<span class="w"> </span>post.md<span class="w"> </span>blog-post.html<span class="w"> </span><span class="s2">&quot;My Blog Post&quot;</span>
+</code></pre></div>
+
+<h3>Notes and Guides</h3>
+<p>Create styled HTML versions of your notes:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>md_to_html.py<span class="w"> </span>notes.md<span class="w"> </span>study-guide.html<span class="w"> </span><span class="s2">&quot;Study Guide&quot;</span>
+</code></pre></div>
+
+<h3>Project Pages</h3>
+<p>Generate simple project pages:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>md_to_html.py<span class="w"> </span>project.md<span class="w"> </span>index.html<span class="w"> </span><span class="s2">&quot;My Project&quot;</span>
+</code></pre></div>
+
+<h2>Customization</h2>
+<h3>Modifying Styles</h3>
+<p>The CSS is embedded in the HTML template within the script. To customize styling:</p>
+<ol>
+<li>Open <code>md_to_html.py</code></li>
+<li>Locate the <code>html_template</code> variable in the <code>convert_markdown_to_html</code> function</li>
+<li>Modify the <code>&lt;style&gt;</code> section to your preferences</li>
+<li>Run the conversion again</li>
+</ol>
+<h3>Example Customizations</h3>
+<p><strong>Dark mode:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#1e1e1e</span><span class="p">;</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#d4d4d4</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Custom fonts:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Georgia&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">serif</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Custom colors:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nt">a</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ff6b6b</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Markdown Extensions</h2>
+<p>The converter uses the following Python Markdown extensions:</p>
+<ul>
+<li><strong>extra</strong>: Enables tables, footnotes, definition lists, and more</li>
+<li><strong>codehilite</strong>: Provides syntax highlighting for code blocks</li>
+</ul>
+<p>To add more extensions, modify the <code>markdown.markdown()</code> call in the script:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">html_body</span> <span class="o">=</span> <span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">md_content</span><span class="p">,</span> <span class="n">extensions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;extra&#39;</span><span class="p">,</span> <span class="s1">&#39;codehilite&#39;</span><span class="p">,</span> <span class="s1">&#39;toc&#39;</span><span class="p">])</span>
+</code></pre></div>
+
+<p>Available extensions: <code>toc</code> (table of contents), <code>abbr</code> (abbreviations), <code>attr_list</code> (attribute lists), and more.</p>
+<h2>Batch Conversion</h2>
+<p>To convert multiple Markdown files at once, use a shell script:</p>
+<p><strong>Linux/Mac:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.md<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>python<span class="w"> </span>md_to_html.py<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+
+<p><strong>Windows (PowerShell):</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nb">Get-ChildItem</span> <span class="p">*.</span><span class="nb">md </span><span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
+    <span class="n">python</span> <span class="n">md_to_html</span><span class="p">.</span><span class="n">py</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Error Handling</h2>
+<p>The script handles common errors gracefully:</p>
+<ul>
+<li><strong>File not found</strong>: Clear error message if input file doesn't exist</li>
+<li><strong>Permission errors</strong>: Reports issues with reading/writing files</li>
+<li><strong>Encoding issues</strong>: Uses UTF-8 encoding by default</li>
+<li><strong>Invalid Markdown</strong>: Processes what it can, ignoring invalid syntax</li>
+</ul>
+<h2>Tips and Best Practices</h2>
+<ol>
+<li><strong>Preview in browser</strong>: Open the generated HTML in a browser to verify formatting</li>
+<li><strong>Validate Markdown</strong>: Use a Markdown linter before conversion for best results</li>
+<li><strong>Image paths</strong>: Use relative paths for images to maintain portability</li>
+<li><strong>Large files</strong>: The converter handles large Markdown files efficiently</li>
+<li><strong>Version control</strong>: Keep both .md and .html files if tracking changes</li>
+</ol>
+<h2>Comparison with Other Tools</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>This Tool</th>
+<th>Pandoc</th>
+<th>Online Converters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Offline</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Customizable</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Lightweight</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Built-in styling</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Command-line</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Python API</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<h2>Troubleshooting</h2>
+<h3>Code blocks not highlighted</h3>
+<p><strong>Problem:</strong> Code blocks appear without syntax highlighting</p>
+<p><strong>Solution:</strong> Install the Pygments library for enhanced highlighting:</p>
+<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>Pygments
+</code></pre></div>
+
+<h3>Unicode characters display incorrectly</h3>
+<p><strong>Problem:</strong> Special characters show as <code>�</code> or boxes</p>
+<p><strong>Solution:</strong> The script uses UTF-8 by default. Ensure your Markdown file is saved as UTF-8.</p>
+<h3>Styles not applied</h3>
+<p><strong>Problem:</strong> HTML shows plain text without styling</p>
+<p><strong>Solution:</strong> The CSS is embedded in the HTML. Check that the output file was fully written.</p>
+<h3>Import error for markdown</h3>
+<p><strong>Problem:</strong> <code>ModuleNotFoundError: No module named 'markdown'</code></p>
+<p><strong>Solution:</strong> Install the markdown library:</p>
+<div class="codehilite"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>markdown
+</code></pre></div>
+</body>
+</html>
