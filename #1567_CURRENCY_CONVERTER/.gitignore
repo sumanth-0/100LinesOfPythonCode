@@ -1,0 +1,46 @@
+# ---- Python cache & build ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.log
+
+# ---- Virtual environments ----
+myenv/
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# ---- Environment variables ----
+.env
+
+# ---- IDE / Editor files ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- OS specific ----
+.DS_Store
+Thumbs.db
+
+# ---- Distribution / packaging ----
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ---- Test / Coverage ----
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+
+# ---- Misc ----
+*.bak
+*.tmp
