@@ -1,0 +1,18 @@
+Here are some contacts from our team:
+
+George Hamilton:george.hamilton@example.com
+Arthur Smith:arther_smith1@company.co.in
+Support:support@my-domain.org
+Sales:sales@shop123.net
+TEMP EMAIL:temp_user%notvalid@domain (should not match)
+
+We also have external partners:
+Mike <mike.partner@external.co.uk>
+Rita (rita+newsletter@updates.io)
+
+Sometimes emails appear like this:
+info@example.com,
+admin@example.com.
+or mixedCase@Domain.Com
+
+-- End of file --
