@@ -1,4 +1,3 @@
----
 
 # Automatic Downloads Organizer
 
