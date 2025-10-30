@@ -85,6 +85,16 @@ class ReactionTimer:
         
         # Random delay
         time.sleep(delay)
+
+        # --- Flush any buffered Enter key presses ---
+        try:
+            import sys, termios  # works on Unix
+            termios.tcflush(sys.stdin, termios.TCIFLUSH)
+        except ImportError:
+            import msvcrt  # Windows
+            while msvcrt.kbhit():
+                msvcrt.getch()
+        # -------------------------------------------
         
         print("\n🔴 PRESS ENTER NOW! 🔴")
         start_time = time.time()
