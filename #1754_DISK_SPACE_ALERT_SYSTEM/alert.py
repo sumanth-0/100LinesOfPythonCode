@@ -1,7 +1,7 @@
 import psutil
 import time
 import logging
-from ploooyer import notification
+from plyer import notification
 import os
 
 # --- Configuration ---
