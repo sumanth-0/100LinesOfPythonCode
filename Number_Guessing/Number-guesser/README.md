@@ -1,0 +1,1 @@
+Simple CLI game: guess a random number (1–100), get feedback (too high/low), type `q` to quit.
